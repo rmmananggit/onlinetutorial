@@ -4,12 +4,55 @@
  include('./includes/sidenav.php');
  ?>
 
+<div class="col-md-12 mb-3 text-center">
+    <h3 style="font-size: 35px;">All online tutor service</h3>
+    <small><i>Unlocking Potential, One Lesson at a Time.</i></small>
+</div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 <section class="section">
     <div class="container">
         <div class="justify-content-center row">
-        
+            <div class="col-lg-12">
+                <div class="candidate-list-widgets mb-4">
+                    <form action="#" class="">
+                        <div class="g-2 row">
+                            <div class="col-lg-3">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-briefcase-alt"></i><input id="exampleFormControlInput1" placeholder="Job, Company name... " type="search" class="form-control filler-job-input-box form-control" />
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-location-point"></i>
+                                    <select class="form-select selectForm__inner" data-trigger="true" name="choices-single-location" id="choices-single-location" aria-label="Default select example">
+                                        <option value="AF">Afghanistan</option>
+                                        <option value="AX">Åland Islands</option>
+                                        <option value="AL">Albania</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-clipboard-notes"></i>
+                                    <select class="form-select selectForm__inner" data-trigger="true" name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
+                                        <option value="4">Accounting</option>
+                                        <option value="1">IT &amp; Software</option>
+                                        <option value="3">Marketing</option>
+                                        <option value="5">Banking</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div>
+                                    <a class="btn btn-primary" href="#"><i class="uil uil-filter"></i> Filter</a><a class="btn btn-success ms-2" href="#"><i class="uil uil-cog"></i> Advance</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -311,11 +354,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
 
 
 

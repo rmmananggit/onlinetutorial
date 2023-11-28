@@ -33,10 +33,11 @@
                 <h3>Sign In</h3>
                 <h6 class="mb-4">Transforming Minds, Shaping Futures - Where Innovation Meets Education!</h6>
               </div>
-              <form action="logincode.php" method="post">
+              <form action="logincode.php" method="POST">
+
                 <div class="form-group first">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control"  name="username" required>
+                  <input type="text" class="form-control" id="username"  name="username" required>
 
                 </div>
                 <div class="form-group last mb-4">

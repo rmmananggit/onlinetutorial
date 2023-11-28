@@ -8,14 +8,12 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Manage</div>
+
                             <a class="nav-link" href="jobs.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>Jobs
+                                <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>My Tutoring Services
                             </a>
                             <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-business-time"></i></div>Job Application
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-poll-h"></i></div>Recent Job
+                                <div class="sb-nav-link-icon"><i class="fas fa-add"></i></div>Create new tutoring service
                             </a>
                             
                             <div class="sb-sidenav-menu-heading">View</div>

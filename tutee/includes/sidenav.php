@@ -9,20 +9,17 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Manage</div>
 
-                            <a class="nav-link" href="my_job.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>My Jobs
-                            </a>
-
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>
-                                Jobs
+                                <div class="sb-nav-link-icon"><i class="fas fa-person"></i></div>
+                                Tutor
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="jobs.php">All Job</a>
-                                    <a class="nav-link" href="add_new_job.php">Create Job</a>
+                                    <a class="nav-link" href="jobs.php">Apply Tutoring</a>
+                                    <a class="nav-link" href="add_new_job.php">On-going Tutor</a>
+                                    <a class="nav-link" href="add_new_job.php">Tutor Application</a>
                                 </nav>
                             </div>
 
