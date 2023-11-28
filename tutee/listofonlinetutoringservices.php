@@ -110,7 +110,8 @@
         job.duration_desc, 
         job.`Status`,
         tutor.profile_image,
-        tutor.address
+        tutor.address,
+        tutor.id AS tutor_id
     FROM
         job
         INNER JOIN
@@ -133,12 +134,15 @@
                                 <div class="col-auto">
                                     <div class="candidate-list-images">
 
+                                    <a href="view_tutor_profile.php?id=<?= $row['tutor_id']; ?>">
                                     <?php 
-                                    echo '<img class="avatar-md rounded-circle" 
-                                        data-image="'.base64_encode($row['profile_image']).'" 
-                                        src="data:image;base64,'.base64_encode($row['profile_image']).'" 
-                                        alt="image" style="object-fit: cover;">'; 
-                                ?>
+                                        echo '<img class="avatar-md rounded-circle" 
+                                            data-image="'.base64_encode($row['profile_image']).'" 
+                                            src="data:image;base64,'.base64_encode($row['profile_image']).'" 
+                                            alt="image" style="object-fit: cover;">'; 
+                                    ?>
+                                </a>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-5">
