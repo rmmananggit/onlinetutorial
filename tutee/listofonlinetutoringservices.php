@@ -99,6 +99,7 @@
         tutor.middlename, 
         tutor.firstname, 
         tutor.id, 
+        job.job_id,
         job.date_posted, 
         job.job_title, 
         job.description, 
@@ -147,8 +148,11 @@
                                         </h5>
                                         <p class="mb-2 mt-1" style="color: green;"><?php echo $row['Status'] ?></p>
                                         <ul class="list-inline mb-0 text-muted">
-                                            <li class="list-inline-item"><i class="mdi mdi-map-marker"></i><?php echo $row['address'] ?></li>
+                                            <li class="list-inline-item"><i class="fa-solid fa-location-dot"></i> <?php echo $row['address'] ?></li>
+                                            <br>
                                             <li class="list-inline-item"><i class="fa-solid fa-peso-sign"></i> <?php echo $row['rate'] ?>/<?php echo $row['rate_desc'] ?></li>
+                                            <br>
+                                            <li class="list-inline-item">Date posted: <?php $datePosted = strtotime($row['date_posted']);  $formattedDate = date('Y-m-d', $datePosted); echo $formattedDate; ?></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -165,7 +169,7 @@
                                
                             </div>
                             <div class="favorite-icon">
-                            <a class="btn btn-primary" href="#"><b>APPLY</b></a>
+                            <a class="btn btn-primary" href="apply.php?id=<?= $row['job_id']; ?>"><b>APPLY</b></a>
                             </div>
                         </div>
                     </div>
