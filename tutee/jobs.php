@@ -5,7 +5,7 @@
  ?>
 
 <div class="col-md-12 mb-3 text-center">
-    <h3 style="font-size: 35px;">All online tutor service</h3>
+    <h3 style="font-size: 35px;">All Online Tutoring Services</h3>
     <small><i>Unlocking Potential, One Lesson at a Time.</i></small>
 </div>
 
