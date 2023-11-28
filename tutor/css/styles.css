@@ -20,8 +20,9 @@
   }
   
   .avatar-md {
-      height: 5rem;
-      width: 5rem;
+      height: 8rem;
+      width: 8rem;
+
   }
   
   .fs-19 {
@@ -46,16 +47,12 @@
   }
   .favorite-icon a {
       display: inline-block;
-      width: 30px;
-      height: 30px;
-      font-size: 18px;
+      font-size: 13px;
       line-height: 30px;
       text-align: center;
-      border: 1px solid #eff0f2;
-      border-radius: 6px;
-      color: rgba(173,181,189,.55);
       -webkit-transition: all .5s ease;
       transition: all .5s ease;
+      margin-top: 40;
   }
   
   

@@ -9,10 +9,10 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Manage</div>
 
-                            <a class="nav-link" href="jobs.php">
+                            <a class="nav-link" href="listofonlinetutoringservices.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>My Tutoring Services
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="post_tutoring_services.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-add"></i></div>Create new tutoring service
                             </a>
                             
