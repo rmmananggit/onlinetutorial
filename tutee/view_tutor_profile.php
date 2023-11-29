@@ -57,7 +57,14 @@ body{
 }
 .shadow-none {
     box-shadow: none!important;
-}</style>
+}
+.fs-30{
+  font-size: 20px;
+}
+.aboutme{
+  font-size: 20px;
+}
+</style>
 
 
 
@@ -76,9 +83,12 @@ body{
             tutor.address, 
             tutor.contact_no, 
             tutor.email_address, 
+            tutor.skills,
             tutor.proof_upload, 
             tutor.profile_image,
+            tutor.aboutme,
             tutor.id,
+            tutor.nickname,
             tutor.username
         FROM
             tutor
@@ -104,20 +114,25 @@ body{
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                  <?php 
+                                        echo '<img class="img-fluid rounded-circle" style="height: 200px; width: 200px; object-fit: cover;"
+                                            data-image="'.base64_encode($user['profile_image']).'" 
+                                            src="data:image;base64,'.base64_encode($user['profile_image']).'" 
+                                            alt="image">'; 
+                    ?>
+                   
                     <div class="mt-3">
-                      <h4><?= $user['username']; ?></h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-                      <p class="text-muted font-size-sm"><?= $user['address']; ?></p>
+                      <h4><?php echo $user['nickname'] ?></h4>
+                      <p class="text-secondary mb-1">Experience Web Developer and Quality Assurance Engineer</p>
                       <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+                     <button class="btn btn-outline-primary">Message</button>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="card mt-3">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
                     <span class="text-secondary">https://bootdey.com</span>
                   </li>
@@ -147,8 +162,8 @@ body{
                     <div class="col-sm-3">
                       <h6 class="mb-0">Full Name</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      Kenneth Valdez
+                    <div class="col-sm-9">
+                    <?php echo $user['firstname'] ?> <?php echo $user['middlename'] ?> <?php echo $user['lastname'] ?>
                     </div>
                   </div>
                   <hr>
@@ -156,17 +171,8 @@ body{
                     <div class="col-sm-3">
                       <h6 class="mb-0">Email</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      fip@jukmuh.al
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      (239) 816-9029
+                    <div class="col-sm-9">
+                    <?php echo $user['email_address'] ?>
                     </div>
                   </div>
                   <hr>
@@ -174,8 +180,8 @@ body{
                     <div class="col-sm-3">
                       <h6 class="mb-0">Mobile</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      (320) 380-4539
+                    <div class="col-sm-9">
+                    <?php echo $user['contact_no'] ?>
                     </div>
                   </div>
                   <hr>
@@ -183,14 +189,17 @@ body{
                     <div class="col-sm-3">
                       <h6 class="mb-0">Address</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                    <div class="col-sm-9">
+                    <?php echo $user['address'] ?>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Gender</h6>
+                    </div>
+                    <div class="col-sm-9">
+                    <?php echo $user['sex'] ?>
                     </div>
                   </div>
                 </div>
@@ -200,54 +209,53 @@ body{
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                      <small>Web Design</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
+                    <h6 class="d-flex align-items-center"><i class="material-icons text-info mr-2">About</i>me:</h6>
+
+                    <p class="aboutme"><?php echo $user['aboutme'] ?></p>
+
+
+
+
+                    <h6 class="d-flex align-items-center"><i class="material-icons text-info mr-2">My</i>Skills:</h6>
+
+                    <?php
+                    $skills = explode(',', $user['skills']);
+                    foreach ($skills as $index => $skill) {
+                    // Add a space after each skill except for the last one
+                    $separator = ($index < count($skills) - 1) ? ' ' : '';
+
+                    echo '<span class="badge bg-soft-secondary fs-30 mt-1">' . trim($skill) . '</span>' . $separator;
+                    }
+                    ?>
+
+
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                      <small>Web Design</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
+                    <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">My</i>Work Experience:</h6>
+
+                    <div>
+                    <ul class="list-unstyled work-activity mb-0">
+                        <li class="work-item">
+                            <h6 class="lh-base mb-0">ABCD Company</h6>
+                            <p class="font-size-13 mb-2">Graphic Designer</p>
+                            <p class="font-size-10 text-muted">2021-2023</p>
+                            <p>To achieve this, it would be necessary to have uniform grammar, and more
+                                common words.</p>
+                        </li>
+                        <li class="work-item">
+                            <h6 class="lh-base mb-0">XYZ Company</h6>
+                            <p class="font-size-13 mb-2">Graphic Designer</p>
+                            <p class="font-size-10 text-muted">2021-2023</p>
+                            <p class="mb-0">It will be as simple as occidental in fact, it will be
+                                Occidental person, it will seem like simplified.</p>
+                        </li>
+                    </ul>
+                </div>
+                    
                     </div>
                   </div>
                 </div>

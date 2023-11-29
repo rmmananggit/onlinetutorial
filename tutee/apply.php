@@ -411,6 +411,9 @@ p {
 b, strong {
     font-weight: 700 !important;
 }
+#map {
+            height: 400px;
+        }
 </style>
 
 
@@ -435,7 +438,6 @@ b, strong {
                         job.rate, 
                         job.description, 
                         job.rate_desc, 
-                        job.skills_required, 
                         job.prefer_schedule, 
                         job.job_duration, 
                         job.duration_desc, 
@@ -479,7 +481,33 @@ b, strong {
                 </div>
 
                 <div class="col-md-7 mt-3">
-                    <img src="https://www.bootdey.com/image/400x300/FFB6C1/000000" alt="project-image" class="rounded">
+                <div id="map"></div>
+
+<!-- Include the Google Maps API script with your API key -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdMKRhyr7cLmw1bSXhZY9_3AEvxnyxBU8&callback=initMap"></script>
+
+<script>
+    // Function to initialize the map
+    function initMap() {
+        // Specify the location coordinates
+        var myLatLng = { lat: -34.397, lng: 150.644 };
+
+        // Create a new map centered at the specified coordinates
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 8 // Adjust the zoom level as needed
+        });
+
+        // Create a marker at the specified coordinates
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+    }
+</script>
+              
+
                  <!-- / project-info-box -->
                  <div class="project-info-box mt-4 mb-0">
                         <p class="mb-0">

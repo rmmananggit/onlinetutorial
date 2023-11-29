@@ -104,13 +104,13 @@
         job.job_title, 
         job.description, 
         job.rate, 
-        job.skills_required,
         job.rate_desc, 
         job.job_duration, 
         job.duration_desc, 
         job.`Status`,
         tutor.profile_image,
         tutor.address,
+        tutor.skills,
         tutor.id AS tutor_id
     FROM
         job
@@ -163,7 +163,7 @@
                                 <div class="col-lg-4">
                                 <div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
                                     <?php
-                                    $skills = explode(',', $row['skills_required']);
+                                    $skills = explode(',', $row['skills']);
                                     foreach ($skills as $skill) {
                                         echo '<span class="badge bg-soft-secondary fs-14 mt-1">' . trim($skill) . '</span>';
                                     }
