@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($otp_entered === $user_data['otp']) {
         // Update user as verified in the database
-        $stmt = $con->prepare("UPDATE user SET is_verified = 1 WHERE phonenumber = ?");
+        $stmt = $con->prepare("UPDATE user_accounts SET is_verified = 1 WHERE phone_number = ?");
         $stmt->bind_param("s", $user_data['phonenumber']);
         $stmt->execute();
         $stmt->close();

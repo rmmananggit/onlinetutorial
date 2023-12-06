@@ -10,69 +10,6 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-
- body{
-  padding-top:40px;
-  background:#E6E6FA    
-  }
-  .card {
-      box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-  }
-  
-  .avatar-md {
-      height: 8rem;
-      width: 8rem;
-
-  }
-  
-  .fs-19 {
-      font-size: 19px;
-  }
-  
-  .primary-link {
-      color: #314047;
-      -webkit-transition: all .5s ease;
-      transition: all .5s ease;
-  }
-  
-  a {
-      color: #02af74;
-      text-decoration: none;
-  }
-  
-  .bookmark-post .favorite-icon a, .job-box.bookmark-post .favorite-icon a {
-      background-color: #da3746;
-      color: #fff;
-      border-color: danger;
-  }
-  .favorite-icon a {
-      display: inline-block;
-      font-size: 13px;
-      line-height: 30px;
-      text-align: center;
-      -webkit-transition: all .5s ease;
-      transition: all .5s ease;
-      margin-top: 40;
-  }
-  
-  
-  .candidate-list-box .favorite-icon {
-      position: absolute;
-      right: 22px;
-      top: 22px;
-  }
-  .fs-14 {
-      font-size: 14px;
-  }
-  .bg-soft-secondary {
-      background-color: rgba(116,120,141,.15)!important;
-      color: #74788d!important;
-  }
-  
-  .mt-1 {
-      margin-top: 0.25rem!important;
-  }
-  
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -2082,7 +2019,7 @@ progress {
   cursor: pointer;
 }
 .form-control:focus, .datatable-input:focus {
-  color: #000000;
+  color: #212529;
   background-color: #fff;
   border-color: #86b7fe;
   outline: 0;
@@ -2096,7 +2033,7 @@ progress {
   opacity: 1;
 }
 .form-control::placeholder, .datatable-input::placeholder {
-  color: #000000;
+  color: #6c757d;
   opacity: 1;
 }
 .form-control:disabled, .datatable-input:disabled {

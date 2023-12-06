@@ -4,27 +4,24 @@ include('../admin/config/config.php');
 
 if (isset($_POST['login'])) {
 
-    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
 
     // $login_query = "SELECT id, firstname, middlename, lastname, username, password, role, is_verified, status FROM `tutor` WHERE username ='$username' AND password ='$password' LIMIT 1";
     // $login_query_run = mysqli_query($con, $login_query);
 
-    $login_query = "SELECT id,firstname,middlename,lastname,username,password,user_type, is_verified,user_status
-    FROM users WHERE username = '$username' AND password = '$password' UNION SELECT id, firstname, middlename, lastname, username, password,user_type, is_verified, user_status
-    FROM tutor WHERE username = '$username' AND password = '$password' UNION SELECT id, firstname, middlename, lastname, username, password, user_type, is_verified, user_status
-    FROM tutee WHERE username = '$username' AND password = '$password' LIMIT 1";
+    $login_query = "SELECT `user_id`, `firstname`, `lastname`, `email`, `password`, `phone_number`, `is_verified`, `role`, `otp`, `user_status` FROM `user_accounts` WHERE email = '$email' AND password = '$password' LIMIT 1";
 $login_query_run = mysqli_query($con, $login_query);
 
 
 if (mysqli_num_rows($login_query_run) > 0) {
     $data = mysqli_fetch_assoc($login_query_run);
 
-    $user_id = $data['id'];
+    $user_id = $data['user_id'];
     $full_name = $data['firstname'] . ' ' . $data['lastname'];
     $user_status = $data['user_status'];
-    $user_type = $data['user_type'];
-    $user_username = $data['username'];
+    $user_type = $data['role'];
+    $user_email = $data['email'];
     $is_verified = $data['is_verified'];
 
     if (!$is_verified) {
@@ -40,7 +37,7 @@ if (mysqli_num_rows($login_query_run) > 0) {
     $_SESSION['auth_user'] = [
         'user_id' => $user_id,
         'user_name' => $full_name,
-        'user_username' => $user_username,
+        'user_email' => $user_email,
     ];
 
     if ($_SESSION['u_status'] == 'Deactivated') {
@@ -57,12 +54,10 @@ if (mysqli_num_rows($login_query_run) > 0) {
         if ($_SESSION['user_type'] == '2') {
             $_SESSION['status'] = "Welcome $full_name";
             $_SESSION['status_code'] = "success";
-            header("Location: ../tutor/index.php");
+            header("Location: ../tutor/checkprofile.php");
             exit(0);
         } elseif ($_SESSION['user_type'] == '1') {
-            $_SESSION['status'] = "Welcome $full_name!";
-            $_SESSION['status_code'] = "success";
-            header("Location: ../tutee/index.php");
+            header("Location: ../tutee/checkprofile.php");
             exit(0);
         } elseif ($_SESSION['user_type'] == '3') {
             $_SESSION['status'] = "Welcome $full_name!";

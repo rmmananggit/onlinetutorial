@@ -44,51 +44,6 @@
                                 </select>
                             </div>
 
-
-                <div class="row mt-4">
-                <div class="col">
-                  <hr class="my-4">
-                </div>
-                <div class="col-auto mt-2">
-                  <h4 class="text-primary">SCHEDULING</h4c>
-                </div>
-                <div class="col">
-                  <hr class="my-4">
-                </div>
-              </div>
-
-
-              <div class="col-md-6">
-                            <div class="form-group">
-                            <label class="mb-2">Days:</label>
-                            <select name="course" required class="form-control">
-                            <option value="" selected disabled>--Select Day--</option>
-                            <option value="3">Monday </option>
-                            <option value="4">Tuesday </option>
-                            </select>
-                            </div>
-                            </div>
-
-                            <div class="col-md-3">
-                            <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Start</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                            </div>
-
-                            <div class="col-md-3">
-                            <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Start</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                            </div>
-
-          
-                        
                             <div class="module-container">
                                 <div class="col-md-12 mb-3 module" data-task-number="1">
                                     <label for="module_1"><b>Learning Task 1</b></label>
@@ -99,7 +54,7 @@
                             </div>
 
                             <div class="col-md-12 mb-3">
-                                <button type="button" id="addModule" class="btn btn-link">Add More</button>
+                                <button type="button" id="addModule" class="btn btn-success">Add More</button>
                             </div>
 
                         </div>

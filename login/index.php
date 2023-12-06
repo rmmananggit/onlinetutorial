@@ -36,8 +36,8 @@
               <form action="logincode.php" method="POST">
 
                 <div class="form-group first">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username"  name="username" required>
+                  <label for="username">Email</label>
+                  <input type="text" class="form-control" id="username"  name="email" required>
 
                 </div>
                 <div class="form-group last mb-4">

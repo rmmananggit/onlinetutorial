@@ -1,167 +1,145 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Register - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <?php session_start(); ?>
 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
+<body style="background: rgb(174,211,238);">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Create  Account</h3></div>
+                                <div class="card-body">
+                                    <form action="process.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+                                        <!-- Existing form elements -->
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="css/style.css">
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" name="firstname" />
+                                                    <label for="inputFirstName">First name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="lastname" />
+                                                    <label for="inputLastName">Last name</label>
+                                                </div>
+                                            </div>
+                                        </div>
 
-    <title>TMS: Registration</title>
-  </head>
-  <body>
+                                        <!-- Email input -->
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" name="email" />
+                                            <label for="inputEmail">Email address</label>
+                                        </div>
 
-  <?php session_start(); ?>
-  
-  <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('images/register.png');"></div>
-    <div class="contents order-2 order-md-1">
+                                        <!-- Password input -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" name="password" />
+                                                    <label for="inputPassword">Password</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="c_password" />
+                                                    <label for="inputPasswordConfirm">Confirm Password</label>
+                                                </div>
+                                            </div>
 
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-7 py-3">
-            <h3><b>Register Now!</b></h3>
-            <p class="mb-4" style="color: black;">Empowering Minds, Crafting Futures - A Nexus of Innovation and Education!</p>
-            <form action="register.php" method="POST" enctype="multipart/form-data">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group first">
-                    <label for="firstname">First Name:</label>
-                    <input required type="text" class="form-control" placeholder="e.g. John" name="firstname">
-                  </div>    
+                                            <div class="col-md-6 mt-3">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input class="form-control" id="phone_number" type="text" placeholder="Phone Number" name="phone" />
+                                                    <label for="phone_number">Phone Number</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mt-3">
+                                            <div class="form-floating mb-3">
+                                                <select class="form-select" id="registerAs" name="role" required>
+                                                    <option disabled selected value="">Select</option>
+                                                    <option value="2">Tutor</option>
+                                                    <option value="1">Tutee</option>
+                                                </select>
+                                                <label for="registerAs">Register As:</label>
+                                            </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- Create Account button -->
+                                        <div class="mt-4 mb-0">
+                                            <div class="d-grid">
+                                                <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small"><a href="../login/index.php">Have an account? Go to login</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group first">
-                    <label for="middlename">Middle Name:<small>(Optional)</small></label>
-                    <input type="text" class="form-control" placeholder="e.g. Smith" name="middlename">
-                  </div>    
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group first">
-                    <label for="lastname">Last Name:</label>
-                    <input required type="text" class="form-control" placeholder="e.g. Creed" name="lastname">
-                  </div>    
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group first">
-                    <label for="suffix">Suffix: <small>(Optional)</small></label>
-                    <select class="form-control" name="suffix">
-                      <option selected value="N/A">N/A</option>
-                      <option value="JR">JR</option>
-                      <option value="SR">SR</option>
-                      <option value="II">II</option>
-                      <option value="III">III</option>
-                      <option value="IV">IV</option>
-                    </select>
-                  </div>    
-                </div>
-              
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group first">
-                    <label for="email">Email Address:</label>
-                    <input required type="email" class="form-control" placeholder="e.g. john@your-domain.com" name="email">
-                  </div>  
-                </div>
-                <div class="col-md-6">
-              
-              <div class="form-group last mb-3">
-                <label for="password">Password:</label>
-                <input required type="password" class="form-control" placeholder="Your Password" name="password">
-              </div>
-            </div>
-            <div class="col-md-6">
-          
-              <div class="form-group last mb-3">
-                <label for="re-password">Confirm Password:</label>
-                <input required type="password" class="form-control" placeholder="Your Password" name="re_password">
-              </div>
-            </div>
-              </div>
-              <div class="row">
-              <div class="col-md-6">
-              <div class="form-group first">
-                  <label for="lname">Phone Number:</label>
-                  <input required
-                        type="text"
-                        class="form-control"
-                        placeholder="09123456789"
-                        name="phonenumber"
-                        pattern="[0-9]*"
-                        oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);">
-              </div>
-          </div>
-                <div class="col-md-6">
-                        <label for="gender">Gender</label>
-                        <select class="form-control" name="gender" required>
-                            <option selected disabled>Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                </div>
-
-
-                <div class="col-md-6">
-                    <label for="">Register As:</label>
-                    <select class="form-control" name="user_type" required>
-                      <option selected disabled>Select</option>
-                      <option value="2">Tutor</option>
-                      <option value="3">Tutee</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">                 
-                <label class="mb-2">Upload Profile Picture:</label> 
-                <input type="file" class="form-control" name="picture" accept=".jpg, .jpeg, .png" required>
-                </div>
-
-              </div>
-
-              <input type="submit" value="Submit" class="btn px-5 btn-primary mt-4">
-
-            </form>
-          </div>
+            </main>
         </div>
-      </div>
+
+        <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-5">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
     </div>
 
-    
-  </div>
-    
-    
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-      
-<?php
-  if(isset($_SESSION['status']) && $_SESSION['status_code'] !='' )
-  {
-      ?>
-          <script>
-          swal({
-            title: "<?php echo $_SESSION['status']; ?>",
-          icon: "<?php echo $_SESSION['status_code']; ?>",
-          });
-          </script>
-          <?php
-          unset($_SESSION['status']);
-          unset($_SESSION['status_code']);
-  }     
-?>
-  </body>
+    
+
+    <?php
+    if(isset($_SESSION['status']) && $_SESSION['status_code'] !='' )
+    {
+        ?>
+        <script>
+            swal({
+                title: "<?php echo $_SESSION['status']; ?>",
+                icon: "<?php echo $_SESSION['status_code']; ?>",
+            });
+        </script>
+        <?php
+        unset($_SESSION['status']);
+        unset($_SESSION['status_code']);
+    }
+    ?>
+</body>
 </html>
