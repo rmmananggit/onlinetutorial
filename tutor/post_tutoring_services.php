@@ -49,7 +49,7 @@
                 <div class="col">
                   <hr class="my-4">
                 </div>
-                <div class="col-auto mt-2">
+                <div class="col-auto mt-2 mb-4">
                   <h4 class="text-primary">SCHEDULING</h4c>
                 </div>
                 <div class="col">
@@ -57,10 +57,8 @@
                 </div>
               </div>
 
-
-              <div class="col-md-6">
+                           <div class="col-md-6">
                             <div class="form-group">
-                            <label class="mb-2">Days:</label>
                             <select name="course" required class="form-control">
                             <option value="" selected disabled>--Select Day--</option>
                             <option value="3">Monday </option>
@@ -72,19 +70,23 @@
                             <div class="col-md-3">
                             <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Start</span>
+                            <span class="input-group-text" id="basic-addon1">Start Time</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="time" class="form-control" aria-describedby="basic-addon1">
                             </div>
                             </div>
 
                             <div class="col-md-3">
                             <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Start</span>
+                            <span class="input-group-text" id="basic-addon1">End Time</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="time" class="form-control" aria-describedby="basic-addon1">
                             </div>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <button type="button" id="addTime" class="btn btn-link">Add More</button>
                             </div>
 
           
