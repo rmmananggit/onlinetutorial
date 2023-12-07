@@ -57,38 +57,46 @@
                 </div>
               </div>
 
-                           <div class="col-md-6">
+                            <div class="container">
+                    <div class="row" id="timeFields1">
+                        <div class="col-md-6">
                             <div class="form-group">
-                            <select name="course" required class="form-control">
-                            <option value="" selected disabled>--Select Day--</option>
-                            <option value="3">Monday </option>
-                            <option value="4">Tuesday </option>
-                            </select>
+                               <select name="day[]" required class="form-control">
+                                    <option value="" selected disabled>--Select Day--</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
                             </div>
-                            </div>
+                        </div>
 
-                            <div class="col-md-3">
+                        <div class="col-md-3">
                             <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Start Time</span>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Start Time</span>
+                                </div>
+                                <input type="time" class="form-control" name="starttime[]" aria-describedby="basic-addon1">
                             </div>
-                            <input type="time" class="form-control" aria-describedby="basic-addon1">
-                            </div>
-                            </div>
+                        </div>
 
-                            <div class="col-md-3">
+                        <div class="col-md-3">
                             <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">End Time</span>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">End Time</span>
+                                </div>
+                                <input type="time" class="form-control" name="endtime[]" aria-describedby="basic-addon1">
                             </div>
-                            <input type="time" class="form-control" aria-describedby="basic-addon1">
-                            </div>
-                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="col-md-12 mb-3">
-                                <button type="button" id="addTime" class="btn btn-link">Add More</button>
-                            </div>
-
+                <div class="col-md-12 mb-3">
+                        <button type="button" id="addTime" class="btn btn-link">Add More</button>
+                    </div>
           
                         
                             <div class="module-container">
@@ -120,6 +128,35 @@
 </div>
 
 <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const addTimeButton = document.getElementById('addTime');
+        const timeContainer = document.querySelector('.container');
+
+        let timeCounter = 2; // Start from 2 to avoid duplicating the existing fields
+
+        function addTime() {
+    timeCounter++;
+
+    const newTimeFields = document.getElementById('timeFields1').cloneNode(true);
+
+    newTimeFields.querySelectorAll('[id]').forEach(function (element) {
+        element.id = element.id.replace('1', timeCounter);
+    });
+
+    newTimeFields.querySelector('select[name="day[]"]').name = 'day[' + timeCounter + ']';
+    newTimeFields.querySelector('input[name="starttime[]"]').name = 'starttime[' + timeCounter + ']';
+    newTimeFields.querySelector('input[name="endtime[]"]').name = 'endtime[' + timeCounter + ']';
+
+    timeContainer.appendChild(newTimeFields);
+}
+
+
+        addTimeButton.addEventListener('click', addTime);
+    }); 
+</script>
+
+<script>
+
     document.addEventListener('DOMContentLoaded', function () {
         const addModuleButton = document.getElementById('addModule');
         const moduleContainer = document.querySelector('.module-container');
@@ -145,7 +182,9 @@
 
         addModuleButton.addEventListener('click', addModule);
     });
+
 </script>
+
 
 
 

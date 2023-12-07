@@ -10,6 +10,9 @@ if (isset($_POST['create_tutoring_services'])) {
     $rate_description = mysqli_real_escape_string($con, $_POST['rate_description']);
 
     $currentDateTime = date('Y-m-d H:i:s');
+    $days = $_POST['day'];
+    $startTimes = $_POST['starttime'];
+    $endTimes = $_POST['endtime'];
 
     // Insert data into the job table
     $queryJob = "INSERT INTO `job`(`tutor_id`, `title`, `description`, `rate`, `rate_description`, `date_posted`) VALUES ('$tutor_id','$title','$description','$rate','$rate_description','$currentDateTime')";
@@ -18,13 +21,36 @@ if (isset($_POST['create_tutoring_services'])) {
     if ($query_run_job) {
         $jobId = $con->insert_id;  // Get the ID of the inserted row (assumes `id` is the primary key in `job`)
 
-        // Insert data into the module_table
+        // Insert data into the job_module table
         if (isset($_POST["module"]) && is_array($_POST["module"])) {
             foreach ($_POST["module"] as $key => $moduleName) {
                 $moduleDesc = mysqli_real_escape_string($con, $_POST["moduledesc"][$key]);
                 $queryModule = "INSERT INTO `job_module` (`job_id`, `module_title`, `module_description`) VALUES ('$jobId', '$moduleName', '$moduleDesc')";
                 $query_run_module = mysqli_query($con, $queryModule);
 
+                // Insert data into the job_schedule table for each module
+                if ($query_run_module) {
+                    $moduleId = $con->insert_id;
+
+                    // Check if the corresponding days, start times, and end times exist
+                    if (isset($days[$key]) && isset($startTimes[$key]) && isset($endTimes[$key])) {
+                        $day = mysqli_real_escape_string($con, $days[$key]);
+                        $startTime = mysqli_real_escape_string($con, $startTimes[$key]);
+                        $endTime = mysqli_real_escape_string($con, $endTimes[$key]);
+
+                        // Insert data into the job_schedule table
+                        $querySchedule = "INSERT INTO `job_schedule` (`job_id`, `day`, `start`, `end`) VALUES ('$moduleId', '$day', '$startTime', '$endTime')";
+                        $query_run_schedule = mysqli_query($con, $querySchedule);
+
+                        if (!$query_run_schedule) {
+                            // Handle the error (you can log it, display a message, etc.)
+                            $_SESSION['status'] = "Error inserting schedule data.";
+                            $_SESSION['status_code'] = "error";
+                            header('Location: my_tutoring_services.php');
+                            exit(0);
+                        }
+                    }
+                }
             }
         }
 
@@ -33,12 +59,16 @@ if (isset($_POST['create_tutoring_services'])) {
         header('Location: my_tutoring_services.php');
         exit(0);
     } else {
-        $_SESSION['status'] = "Failed";
+        $_SESSION['status'] = "Failed to insert job data.";
         $_SESSION['status_code'] = "error";
         header('Location: my_tutoring_services.php');
         exit(0);
     }
 }
+
+
+
+
 
 
 if (isset($_POST['submit'])) {
@@ -110,4 +140,28 @@ if (isset($_POST['delete'])) {
 
     mysqli_stmt_close($stmt);
     mysqli_close($con);
+}
+
+
+if(isset($_POST['submit_payment']))
+{
+    $user_id = $_SESSION['auth_user']['user_id'];
+    $reference = $_POST['reference'];
+    $subs = $_POST['subscriptiontype'];
+    $mop = $_POST['mop'];
+    $receipt = $_FILES['receipt'];
+
+    $query = "INSERT INTO `subscriptions`(`user_id`, `subscription_type`, `reference`, `modeofpayment`, `receipt`) VALUES ('$user_id','$subs','$reference','$mop','$receipt')";
+    $query_run = mysqli_query($con, $query);
+    
+    if($query_run)
+    {
+      header('Location: process_subscription.php');
+        exit(0);
+    }
+    else
+    {
+      header('Location: student_manage.php');
+        exit(0);
+    }
 }

@@ -33,7 +33,7 @@
                 <h3>Sign In</h3>
                 <h6 class="mb-4">Transforming Minds, Shaping Futures - Where Innovation Meets Education!</h6>
               </div>
-              <form action="logincode.php" method="POST">
+              <form action="logincode.php" method="POST" autocomplete="off">
 
                 <div class="form-group first">
                   <label for="username">Email</label>

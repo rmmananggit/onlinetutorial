@@ -10,11 +10,14 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-
- body{
-  padding-top:40px;
-  background:#E6E6FA    
-  }
+ 
+ body {
+  margin: 0;
+  color: #2e323c;
+  background: #f5f6fa;
+  position: relative;
+  height: 100%;
+ }
   .card {
       box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
   }

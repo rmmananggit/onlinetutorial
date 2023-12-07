@@ -40,6 +40,12 @@ if (isset($_GET['id'])) {
         job.job_id = $id";
     $result = mysqli_query($con, $query);
 
+    
+
+
+
+
+
     if ($result) {
         $taskNumber = 1;
 ?>

@@ -215,46 +215,29 @@ background:#f7f8fa
 
 
               <?php
- if(isset($_GET['id']))
- {
-     $id = $_GET['id'];
+
+      $user_id = $_SESSION['auth_user']['user_id'];
       $users = "SELECT
-      user_accounts.user_id, 
-      user_accounts.firstname, 
-      user_accounts.lastname, 
-      user_accounts.email, 
-      user_accounts.phone_number, 
-      user_accounts.is_verified, 
-      user_accounts.role, 
-      user_accounts.user_status, 
-      tutor.gender, 
-      tutor.address, 
-      tutor.barangay, 
-      tutor.municipality, 
-      tutor.zipcode, 
-      tutor.aboutme, 
-      tutor.employmenttype, 
-      tutor.position, 
-      tutor.company, 
-      tutor.location, 
-      tutor.school, 
-      tutor.degree, 
-      tutor.fieldofstudy, 
-      tutor.startdate, 
-      tutor.enddate, 
-      tutor.skills, 
-      tutor.resume_file_path, 
-      tutor.profile_picture,
-      tutor.employ_start,
-      tutor.employ_end
-    FROM
-      tutor
+      onlinetutorial.user_accounts.user_id, 
+      onlinetutorial.user_accounts.firstname, 
+      onlinetutorial.user_accounts.lastname, 
+      onlinetutorial.user_accounts.email, 
+      onlinetutorial.user_accounts.phone_number, 
+      onlinetutorial.tutee.gender, 
+      onlinetutorial.tutee.address, 
+      onlinetutorial.tutee.barangay, 
+      onlinetutorial.tutee.municipality, 
+      onlinetutorial.tutee.zipcode, 
+      onlinetutorial.tutee.aboutme, 
+      onlinetutorial.tutee.profile_picture
+  FROM
+      onlinetutorial.user_accounts
       INNER JOIN
-      user_accounts
+      onlinetutorial.tutee
       ON 
-        tutor.user_id = user_accounts.user_id
-    WHERE
-      user_accounts.user_id = $id";
+          onlinetutorial.user_accounts.user_id = onlinetutorial.tutee.user_id
+  WHERE
+      onlinetutorial.user_accounts.user_id = $user_id";
       $users_run = mysqli_query($con, $users);
               ?>
               <?php
@@ -277,7 +260,6 @@ background:#f7f8fa
                     ?>
 
                             <h4 class="text-primary font-size-20 mt-3 mb-2"><?= $user['firstname']; ?> </h4>
-                            <a class="btn btn-outline-primary">Message</a>
                         </div>
                     </div><!-- end col -->
                     <div class="col-md-9">
@@ -311,7 +293,7 @@ background:#f7f8fa
                 
 
                 <div class="tab-pane active show" id="team-tab" role="tabpanel">
-                    <h4 class="card-title mb-4">Recent Tutor Services Posted</h4>
+                    <h4 class="card-title mb-4">My Tutor</h4>
                     <div class="row">
                        
                     </div><!-- end row -->
@@ -321,22 +303,7 @@ background:#f7f8fa
     </div><!-- end col -->
 
     <div class="col-xl-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="">
-                    <h4 class="card-title mb-4">My Skill</h4>
-                    <div class="d-flex gap-2 flex-wrap">
-                    <?php
-                                    $skills = explode(',', $user['skills']);
-                                    foreach ($skills as $skills) {
-                                        echo '<span class="badge bg-soft-secondary fs-14 mt-1">' . trim($skills) . '</span>';
-                                    }
-                                    ?>
-                    </div>
-                </div>
-            </div><!-- end cardbody -->
-        </div><!-- end card -->
-
+       
         <div class="card">
             <div class="card-body">
                 <div>
@@ -362,38 +329,6 @@ background:#f7f8fa
                 </div>
             </div><!-- end card body -->
         </div><!-- end card -->
-
-        <div class="card">
-            <div class="card-body">
-                <div>
-                    <h4 class="card-title mb-4">Work Experience</h4>
-                    <ul class="list-unstyled work-activity mb-0">
-                    <li class="work-item" data-date="<?= date('Y', strtotime($user['employ_start'])); ?>-<?= date('Y', strtotime($user['employ_end'])); ?>"></li>
-                            <h6 class="lh-base mb-0"><?= $user['company']; ?></h6>
-                            <p class="font-size-13 mb-2"><?= $user['position']; ?></p>
-                            <p><?= $user['location']; ?></p>
-                            <p><?= $user['employmenttype']; ?></p>
-                        </li>
-                    </ul><!-- end ul -->
-                </div>
-            </div><!-- end card-body -->
-        </div><!-- end card -->
-
-        <div class="card">
-            <div class="card-body">
-                <div>
-                    <h4 class="card-title mb-4">School</h4>
-                    <ul class="list-unstyled work-activity mb-0">
-                    <li class="work-item" data-date="<?= date('Y', strtotime($user['startdate'])); ?>-<?= date('Y', strtotime($user['enddate'])); ?>"></li>
-
-                            <h6 class="lh-base mb-0"><?= $user['school']; ?></h6>
-                            <p class="font-size-13 mb-2">Degree: <?= $user['degree']; ?></p>
-                            <p>Field of Study: <?= $user['fieldofstudy']; ?></p>
-                        </li>
-                    </ul><!-- end ul -->
-                </div>
-            </div><!-- end card-body -->
-        </div><!-- end card -->
     </div><!-- end col -->
 </div>
 
@@ -408,7 +343,7 @@ background:#f7f8fa
                                 <h4>No Record Found!</h4>
                                 <?php
                             }
-                        }
+                        
                         ?>
 
 

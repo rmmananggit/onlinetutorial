@@ -7,6 +7,12 @@
                             <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Dashboard
                             </a>
+
+                            <div class="sb-sidenav-menu-heading">View</div>
+                            <a class="nav-link" href="my_profile.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>My Profile
+                            </a>
+
                             <div class="sb-sidenav-menu-heading">Manage</div>
 
 
@@ -17,7 +23,6 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="listofonlinetutoringservices.php">Apply Tutoring</a>
                                     <a class="nav-link" href="add_new_job.php">On-going Tutor</a>
                                     <a class="nav-link" href="add_new_job.php">Tutor Application</a>
                                 </nav>
@@ -36,7 +41,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-sticky-note"></i></div>Feedback and Review
                             </a>
                             <div class="sb-sidenav-menu-heading">Other</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="subscription_dashboard.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-circle"></i></div>Membership
                             </a>
                         </div>

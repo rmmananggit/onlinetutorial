@@ -8,11 +8,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 
-<div class="container">
+<div class="container mt-3">
 <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a>Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">My Tutoring Services</li>
+              <li class="breadcrumb-item active" aria-current="page">All Tutoring Services</li>
             </ol>
           </nav>
 </div>
@@ -97,17 +97,14 @@
                                         <h5 class="fs-19 mb-0">
                                             <a class="primary-link"><?php echo $row['title'] ?></a>
                                         </h5>
-                                        <p class="mb-2 mt-1" style="color: green;"><?php echo $row['status'] ?></p>
                                         <ul class="list-inline mb-0 text-muted">
-                                            <li class="list-inline-item"><i class="fa-solid fa-location-dot"></i> <?php echo $row['address'] ?></li>
-                                            <br>
-                                            <li class="list-inline-item"><i class="fa-solid fa-peso-sign"></i> <?php echo $row['rate'] ?>/<?php echo $row['rate_description'] ?></li>
+                                            <li class="list-inline-item"><?php echo $row['description'] ?></li>
                                             <br>
                                             <li class="list-inline-item">Date posted: <?php $datePosted = strtotime($row['date_posted']);  $formattedDate = date('Y-m-d', $datePosted); echo $formattedDate; ?></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <!-- <div class="col-lg-4">
                 <div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
                                     <?php
                                     $skills = explode(',', $row['skills']);
@@ -116,13 +113,13 @@
                                     }
                                     ?>
                                 </div>
-                            </div>
+                            </div> -->
                                
                             </div>
                             <div class="favorite-icon mt-2">
                 <a class="btn btn-outline-primary" href="view_tutoring_services.php?id=<?= $row['job_id']; ?>"><b>VIEW</b></a>
-                <a class="btn btn-outline-secondary" href="update_tutoring_services.php?id=<?= $row['job_id']; ?>"><b>UPDATE</b></a>
-                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal"><b>DELETE</b></a>
+                <a class="btn btn-outline-info" href="view_tutoring_services.php?id=<?= $row['job_id']; ?>"><b>UPDATE</b></a>
+                <a class="btn btn-outline-danger" href="view_tutoring_services.php?id=<?= $row['job_id']; ?>"><b>DELETE</b></a>
             </div>
 
                         </div>
