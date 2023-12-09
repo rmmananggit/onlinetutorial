@@ -23,8 +23,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="add_new_job.php">On-going Tutor</a>
-                                    <a class="nav-link" href="add_new_job.php">Tutor Application</a>
+                                    <a class="nav-link" href="ongoing_tutor.php">On-going Tutor</a>
+                                    <a class="nav-link" href="tutor_application.php">Tutor Application</a>
                                 </nav>
                             </div>
 

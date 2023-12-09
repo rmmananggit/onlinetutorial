@@ -19,6 +19,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>My Services
                             </a>
 
+                            <a class="nav-link" href="hire.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>Tutor Application
+                            </a>
+
                             <a class="nav-link" href="message.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>Message
                             </a>

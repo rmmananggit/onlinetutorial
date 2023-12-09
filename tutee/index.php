@@ -127,28 +127,29 @@
             $id = $_SESSION['auth_user']['user_id'];
 
             $query = "SELECT
-                onlinetutorial.job.job_id, 
-                onlinetutorial.job.title, 
-                onlinetutorial.job.description, 
-                onlinetutorial.job.rate, 
-                onlinetutorial.job.rate_description, 
-                onlinetutorial.job.`status`, 
-                onlinetutorial.job.date_posted, 
-                onlinetutorial.tutor.address, 
-                onlinetutorial.tutor.skills, 
-                onlinetutorial.tutor.profile_picture, 
-                onlinetutorial.tutor.tutor_id, 
-                onlinetutorial.user_accounts.user_id
-            FROM
-                onlinetutorial.job
-                INNER JOIN
-                onlinetutorial.user_accounts
-                ON 
-                    onlinetutorial.job.tutor_id = onlinetutorial.user_accounts.user_id
-                INNER JOIN
-                onlinetutorial.tutor
-                ON 
-                    onlinetutorial.user_accounts.user_id = onlinetutorial.tutor.user_id";
+            job.job_id, 
+            job.title, 
+            job.description, 
+            job.rate, 
+            job.rate_description, 
+            job.`status`, 
+            job.date_posted, 
+            tutor.address, 
+            tutor.profile_picture, 
+            tutor.skills,
+            user_accounts.user_id
+        FROM
+            job
+            INNER JOIN
+            user_accounts
+            ON 
+                job.tutor_id = user_accounts.user_id
+            INNER JOIN
+            tutor
+            ON 
+                user_accounts.user_id = tutor.user_id
+        ORDER BY
+            job.date_posted DESC";
 
             $query_run = mysqli_query($con, $query);
             $check_jobs = mysqli_num_rows($query_run) > 0;
