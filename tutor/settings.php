@@ -97,7 +97,8 @@ include('./includes/sidenav.php');
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
                     <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?= $user['firstname']; ?> <?= $user['lastname']; ?></h4>
-                    <p class="mb-0"><?= $user['email']; ?></p>
+                    <p class="mb-0"><i class="fa-solid fa-envelope"></i> <?= $user['email']; ?></p>
+                    <p class="mb-0"><i class="fa-solid fa-phone"></i> <?= $user['phone_number']; ?></p>
                   </div>
                   <div class="text-center text-sm-right">
                   <span class="badge badge-success">

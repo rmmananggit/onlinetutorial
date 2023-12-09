@@ -79,7 +79,7 @@
 
         $query = "SELECT
         job.job_id,
-        job.tutor_id, 
+        job.user_id, 
         job.title, 
         job.description, 
         job.rate, 
@@ -95,13 +95,13 @@
         INNER JOIN
         tutor
         ON 
-            job.tutor_id = tutor.tutor_id
+            job.user_id = tutor.user_id
         INNER JOIN
         user_accounts
         ON 
             tutor.user_id = user_accounts.user_id
     WHERE
-        job.tutor_id = $id";
+        job.user_id = $id";
 
         $query_run = mysqli_query($con, $query);
         $check_jobs = mysqli_num_rows($query_run) > 0;

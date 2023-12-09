@@ -201,12 +201,12 @@ background:#f7f8fa
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.2.96/css/materialdesignicons.min.css" integrity="sha512-LX0YV/MWBEn2dwXCYgQHrpa9HJkwB+S+bnBpifSOTO1No27TqNMKYoAn6ff2FBh03THAzAiiCwQ+aPX+/Qt/Ow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="container">
 
-<nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a>Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">My Profile</li>
-            </ol>
-            </nav>
+                <nav aria-label="breadcrumb" class="main-breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a>Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+                </ol>
+                </nav>
 
 
 <div class="row">
@@ -275,7 +275,7 @@ background:#f7f8fa
                     alt="image" style="object-fit: cover;">';
                     ?>
 
-                            <h4 class="text-primary font-size-20 mt-3 mb-2"><?= $user['firstname']; ?> </h4>
+                            <h4 class="text-primary font-size-16 mt-3 mb-2"><?= $user['firstname']; ?> </h4>
                         </div>
                     </div><!-- end col -->
                     <div class="col-md-9">
@@ -324,7 +324,7 @@ background:#f7f8fa
        
                $query = "SELECT
                job.job_id,
-               job.tutor_id, 
+               job.user_id, 
                job.title, 
                job.description, 
                job.rate, 
@@ -340,13 +340,13 @@ background:#f7f8fa
                INNER JOIN
                tutor
                ON 
-                   job.tutor_id = tutor.tutor_id
+                   job.user_id = tutor.user_id
                INNER JOIN
                user_accounts
                ON 
                    tutor.user_id = user_accounts.user_id
            WHERE
-               job.tutor_id = $id";
+               job.user_id = $id";
        
                $query_run = mysqli_query($con, $query);
                $check_jobs = mysqli_num_rows($query_run) > 0;
