@@ -204,7 +204,7 @@ background:#f7f8fa
 <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a>Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+            <li class="breadcrumb-item active" aria-current="page">View Tutor's Profile</li>
             </ol>
             </nav>
 

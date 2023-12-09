@@ -311,7 +311,110 @@ background:#f7f8fa
                 <div class="tab-pane active show" id="team-tab" role="tabpanel">
                     <h4 class="card-title mb-4">My Posted Jobs</h4>
                     <div class="row">
+                    <div class="candidate-list">
+                   
+
+                   <?php
+       
+               require '../admin/config/config.php';
+       
+               if(isset($_SESSION['auth_user'])) {
+                   // Retrieve the user ID from the session
+                   $id = $_SESSION['auth_user']['user_id'];
+       
+               $query = "SELECT
+               job.job_id,
+               job.tutor_id, 
+               job.title, 
+               job.description, 
+               job.rate, 
+               job.rate_description, 
+               job.date_posted, 
+               job.status,
+               tutor.profile_picture, 
+               tutor.address,
+               tutor.skills,
+               tutor.address
+           FROM
+               job
+               INNER JOIN
+               tutor
+               ON 
+                   job.tutor_id = tutor.tutor_id
+               INNER JOIN
+               user_accounts
+               ON 
+                   tutor.user_id = user_accounts.user_id
+           WHERE
+               job.tutor_id = $id";
+       
+               $query_run = mysqli_query($con, $query);
+               $check_jobs = mysqli_num_rows($query_run) > 0;
+       
+               if($check_jobs)
+               {
+                   while($row = mysqli_fetch_assoc($query_run))
+                   {
+                       ?>
                        
+                       <div class="candidate-list-box card mt-2">
+                               <div class="p-4 card-body">
+                                   <div class="align-items-center row">
+                                       <div class="col-auto">
+                                           <div class="candidate-list-images">
+       
+                                           <!-- <a href="view_tutor_profile.php?id=<?= $row['tutor_id']; ?>"> -->
+                                           <?php 
+                                               echo '<img class="avatar-md rounded-circle" 
+                                                   data-image="'.base64_encode($row['profile_picture']).'" 
+                                                   src="data:image;base64,'.base64_encode($row['profile_picture']).'" 
+                                                   alt="image" style="object-fit: cover;">'; 
+                                           ?>
+                                       </a>
+       
+                                           </div>
+                                       </div>
+                                       <div class="col-lg-8">
+                                           <div class="candidate-list-content mt-3 mt-lg-0">
+                                               <h5 class="fs-19 mb-0">
+                                                   <a class="primary-link"><?php echo $row['title'] ?></a>
+                                               </h5>
+                                               <ul class="list-inline mb-0 text-muted">
+                                                   <li class="list-inline-item"><?php echo $row['description'] ?></li>
+                                                   <br>
+                                                   <li class="list-inline-item">Date posted: <?php $datePosted = strtotime($row['date_posted']);  $formattedDate = date('Y-m-d', $datePosted); echo $formattedDate; ?></li>
+                                               </ul>
+                                           </div>
+                                       </div>
+                                       <!-- <div class="col-lg-4">
+                       <div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
+                                           <?php
+                                           $skills = explode(',', $row['skills']);
+                                           foreach ($skills as $skills) {
+                                               echo '<span class="badge bg-soft-secondary fs-14 mt-1">' . trim($skills) . '</span>';
+                                           }
+                                           ?>
+                                       </div>
+                                   </div> -->
+                                      
+                                   </div>
+                        
+                               </div>
+                           </div>
+                          
+                           <?php
+                      
+                   }
+               }
+               else{
+                   echo "No job posted yet";
+               }
+           }
+       
+       
+                   ?>
+       
+                       </div>
                     </div><!-- end row -->
                 </div><!-- end tab pane -->
             </div>

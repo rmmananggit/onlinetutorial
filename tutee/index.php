@@ -17,11 +17,99 @@
           </nav>
 </div>
 
+ <div class="col-lg-12">
+                <div class="candidate-list-widgets mb-4">
+                    <form action="#" class="">
+                        <div class="g-2 row">
+                            <div class="col-lg-4">
+                            <div class="filler-job-form">
+                            <i class="uil uil-location-point"></i>
+                            <select class="form-select selectForm__inner" data-trigger="true" name="choices-single-location" id="choices-single-location" aria-label="Default select example" required>
+                            <option selected disabled>Select Category</option>
+                            <option value="Academic">Academic</option>
+                            <option value="Non Academic">Non Academic</option>
+                            </select>
+                            </div>
+                            </div>
+                           
+                                                        <!-- Second dropdown for Academic subjects -->
+                            <div class="col-lg-4" id="academicSubjects" style="display: none;">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-location-point"></i>
+                                    <select class="form-select selectForm__inner" name="academicSubjects" aria-label="Default select example" required>
+                                        <option selected disabled>Select Academic Subject</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Math">Math</option>
+                                        <option value="English">English</option>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <!-- Second dropdown for Non Academic subjects -->
+                            <div class="col-lg-4" id="nonAcademicSubjects" style="display: none;">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-location-point"></i>
+                                    <select class="form-select selectForm__inner" name="nonAcademicSubjects" aria-label="Default select example" required>
+                                        <option selected disabled>Select Non Academic Subject</option>
+                                        <option value="Guitar Lesson">Guitar Lesson</option>
+                                        <option value="Public Speaking Masterclass">Public Speaking Masterclass</option>
+                                        <option value="Bookkeeping NC III">Bookkeeping NC III</option>
+                                    </select>
+                                </div>
+                            </div>
+                         
+                            <div class="col-lg-4">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-location-point"></i>
+                                    <select class="form-select selectForm__inner" data-trigger="true" name="choices-single-location" id="choices-single-location" aria-label="Default select example" required>
+                                       
+                                    <option selected disabled>Select Municipality</option>
+                                        <option value="Academic">Academic</option>
+                                        <option value="Aloran">Aloran</option>
+                                        <option value="Aloran">Baliangao</option>
+                                        <option value="Bonifacio">Bonifacio</option>
+                                        <option value="Calamba">Calamba</option>
+                                        <option value="Clarin">Clarin</option>
+                                        <option value="Conception">Conception</option> 
+                                        <option value="Don Victoriano">Don Victoriano</option>
+                                        <option value="Jimenez">Jimenez</option>
+                                        <option value="Lopez Jaena">Lopez Jaena</option>
+                                        <option value="Oroquieta City">Oroquieta City</option>
+                                        <option value="Ozamis City">Ozamis City</option>
+                                        <option value="Panaon">Panaon</option>
+                                        <option value="Plaridel">Plaridel</option>
+                                        <option value="Sapang Dalaga">Sapang Dalaga</option>
+                                        <option value="Sinacaban">Sinacaban</option>
+                                        <option value="Tangub City">Tangub City</option>
+                                        <option value="Tudela">Tudela</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
 
 <section class="section">
     <div class="container">
         <div class="row">
+        <div class="align-items-center row">
+                    <div class="col-lg-8">
+                        <div class="mb-3 mb-lg-0"><h6 class="fs-16 mb-0">Showing 1 – 8 of 11 results</h6></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="candidate-list-widgets">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                </div>
+                                <div class="col-lg-6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         <div class="container">
    
 </div>
@@ -34,42 +122,46 @@
 
         require '../admin/config/config.php';
 
-        if(isset($_SESSION['auth_user'])) {
+        if (isset($_SESSION['auth_user'])) {
             // Retrieve the user ID from the session
             $id = $_SESSION['auth_user']['user_id'];
 
-        $query = "SELECT
-        onlinetutorial.job.job_id, 
-        onlinetutorial.job.title, 
-        onlinetutorial.job.description, 
-        onlinetutorial.job.rate, 
-        onlinetutorial.job.rate_description, 
-        onlinetutorial.job.`status`, 
-        onlinetutorial.job.date_posted, 
-        onlinetutorial.tutor.address, 
-        onlinetutorial.tutor.skills, 
-        onlinetutorial.tutor.profile_picture, 
-        onlinetutorial.tutor.tutor_id, 
-        onlinetutorial.user_accounts.user_id
-    FROM
-        onlinetutorial.job
-        INNER JOIN
-        onlinetutorial.user_accounts
-        ON 
-            onlinetutorial.job.tutor_id = onlinetutorial.user_accounts.user_id
-        INNER JOIN
-        onlinetutorial.tutor
-        ON 
-            onlinetutorial.user_accounts.user_id = onlinetutorial.tutor.user_id";
+            $query = "SELECT
+                onlinetutorial.job.job_id, 
+                onlinetutorial.job.title, 
+                onlinetutorial.job.description, 
+                onlinetutorial.job.rate, 
+                onlinetutorial.job.rate_description, 
+                onlinetutorial.job.`status`, 
+                onlinetutorial.job.date_posted, 
+                onlinetutorial.tutor.address, 
+                onlinetutorial.tutor.skills, 
+                onlinetutorial.tutor.profile_picture, 
+                onlinetutorial.tutor.tutor_id, 
+                onlinetutorial.user_accounts.user_id
+            FROM
+                onlinetutorial.job
+                INNER JOIN
+                onlinetutorial.user_accounts
+                ON 
+                    onlinetutorial.job.tutor_id = onlinetutorial.user_accounts.user_id
+                INNER JOIN
+                onlinetutorial.tutor
+                ON 
+                    onlinetutorial.user_accounts.user_id = onlinetutorial.tutor.user_id";
 
-        $query_run = mysqli_query($con, $query);
-        $check_jobs = mysqli_num_rows($query_run) > 0;
+            $query_run = mysqli_query($con, $query);
+            $check_jobs = mysqli_num_rows($query_run) > 0;
 
-        if($check_jobs)
-        {
-            while($row = mysqli_fetch_assoc($query_run))
-            {
-                ?>
+            if ($check_jobs) {
+                while ($row = mysqli_fetch_assoc($query_run)) {
+                    // Check if the user has applied for this job
+                    $jobId = $row['job_id'];
+                    $checkApplicationQuery = "SELECT * FROM job_application WHERE tutee_id = $id AND job_id = $jobId";
+                    $checkApplicationResult = mysqli_query($con, $checkApplicationQuery);
+                    $isApplied = mysqli_num_rows($checkApplicationResult) > 0;
+
+                    ?>
                 
                 <div class="candidate-list-box card mt-2">
                         <div class="p-4 card-body">
@@ -94,7 +186,14 @@
                                             <a class="primary-link"><?php echo $row['title'] ?></a>
                                         </h5>
                                         <ul class="list-inline mb-0 text-muted">
-                                            <li class="list-inline-item"><?php echo $row['description'] ?></li>
+                                            <li class="list-inline-item"><?php echo $row['address'] ?></li>
+                                            <br>
+                                            <li class="list-inline-item">
+                                                <span class="badge <?php echo ($row['status'] === 'Active') ? 'bg-success' : (($row['status'] === 'Ongoing') ? 'bg-warning' : 'bg-secondary'); ?>">
+                                                    <?php echo $row['status'] ?>
+                                                </span>
+                                            </li>
+
                                             <br>
                                             <li class="list-inline-item">Date posted: <?php $datePosted = strtotime($row['date_posted']);  $formattedDate = date('Y-m-d', $datePosted); echo $formattedDate; ?></li>
                                             <br>
@@ -107,7 +206,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- <div class="col-lg-4">
+                                <div class="col-lg-4">
                 <div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
                                     <?php
                                     $skills = explode(',', $row['skills']);
@@ -116,12 +215,23 @@
                                     }
                                     ?>
                                 </div>
-                            </div> -->
+                            </div>
                                
                             </div>
+
+                           
                             <div class="favorite-icon mt-2">
-                <a class="btn btn-outline-primary" href="apply.php?id=<?= $row['job_id']; ?>"><b>APPLY</b></a>
-            </div>
+                                            <?php if ($row['status'] !== 'Ongoing') : ?>
+                                                <?php if ($isApplied) : ?>
+                                                    <a class="btn btn-outline-primary disabled" aria-disabled="true"><b>APPLIED</b></a>
+                                                <?php else : ?>
+                                                    <a class="btn btn-outline-primary" href="apply.php?id=<?= $row['job_id']; ?>"><b>APPLY</b></a>
+                                                <?php endif; ?>
+                                            <?php else : ?>
+                                                <a class="btn btn-outline-primary disabled" aria-disabled="true"><b>APPLIED</b></a>
+                                            <?php endif; ?>
+                                        </div>
+
 
                         </div>
                     </div>
@@ -169,6 +279,26 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.getElementById('choices-single-location').addEventListener('change', function () {
+        var academicSubjects = document.getElementById('academicSubjects');
+        var nonAcademicSubjects = document.getElementById('nonAcademicSubjects');
+
+        if (this.value === 'Academic') {
+            academicSubjects.style.display = 'block';
+            nonAcademicSubjects.style.display = 'none';
+        } else if (this.value === 'Non Academic') {
+            academicSubjects.style.display = 'none';
+            nonAcademicSubjects.style.display = 'block';
+        } else {
+            academicSubjects.style.display = 'none';
+            nonAcademicSubjects.style.display = 'none';
+        }
+    });
+</script>
+
 
 <script>
     function setJobIdToDelete(jobId) {

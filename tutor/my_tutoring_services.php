@@ -12,7 +12,7 @@
 <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a>Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">All Tutoring Services</li>
+              <li class="breadcrumb-item active" aria-current="page">My Tutoring Services</li>
             </ol>
           </nav>
 </div>
@@ -100,7 +100,14 @@
                                         <ul class="list-inline mb-0 text-muted">
                                             <li class="list-inline-item"><?php echo $row['description'] ?></li>
                                             <br>
+                                            <li class="list-inline-item">
+                                                <span class="badge <?php echo ($row['status'] === 'Active') ? 'bg-success' : (($row['status'] === 'Ongoing') ? 'bg-warning' : 'bg-secondary'); ?>">
+                                                    <?php echo $row['status'] ?>
+                                                </span>
+                                            </li>
+                                            <br>
                                             <li class="list-inline-item">Date posted: <?php $datePosted = strtotime($row['date_posted']);  $formattedDate = date('Y-m-d', $datePosted); echo $formattedDate; ?></li>
+                                            <br>
                                         </ul>
                                     </div>
                                 </div>
@@ -119,7 +126,7 @@
                             <div class="favorite-icon mt-2">
                 <a class="btn btn-outline-primary" href="view_tutoring_services.php?id=<?= $row['job_id']; ?>"><b>VIEW</b></a>
                 <a class="btn btn-outline-info" href="view_tutoring_services.php?id=<?= $row['job_id']; ?>"><b>UPDATE</b></a>
-                <a class="btn btn-outline-danger" href="view_tutoring_services.php?id=<?= $row['job_id']; ?>"><b>DELETE</b></a>
+                <a class="btn btn-outline-danger" href="#" data-toggle="modal" data-target="#exampleModal" onclick="setJobIdToDelete(<?= $row['job_id']; ?>)"><b>DELETE</b></a>
             </div>
 
                         </div>

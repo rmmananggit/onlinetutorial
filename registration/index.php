@@ -64,12 +64,14 @@
                                             </div>
 
                                             <div class="col-md-6 mt-3">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="phone_number" type="text" placeholder="Phone Number" name="phone" />
-                                                    <label for="phone_number">Phone Number</label>
-                                                </div>
+                                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input class="form-control" type="text" name="phone" id="phone" placeholder="09X-XXX-XXXXX">
+                                <small class="text-muted">Format: 09X-XXX-XXXXX</small>
+                            </div>
                                             </div>
 
+                                            
                                             <div class="col-md-6 mt-3">
                                             <div class="form-floating mb-3">
                                                 <select class="form-select" id="registerAs" name="role" required>
@@ -123,6 +125,25 @@
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+    // Add event listener to the input field
+    document.getElementById('phone').addEventListener('input', function (event) {
+        // Remove non-numeric characters
+        let phoneNumber = event.target.value.replace(/\D/g, '');
+
+        // Check if the length is greater than 11, then trim to 11 digits
+        if (phoneNumber.length > 11) {
+            phoneNumber = phoneNumber.slice(0, 11);
+        }
+
+        // Format the phone number using regex
+        phoneNumber = phoneNumber.replace(/^(\d{2})(\d{3})(\d{5})$/, '$1-$2-$3');
+
+        // Set the formatted phone number back to the input field
+        event.target.value = phoneNumber;
+    });
+</script>
 
     
 

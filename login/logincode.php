@@ -52,8 +52,6 @@ if (mysqli_num_rows($login_query_run) > 0) {
         exit(0);
     } elseif ($_SESSION['u_status'] == 'Active') {
         if ($_SESSION['user_type'] == '2') {
-            $_SESSION['status'] = "Welcome $full_name";
-            $_SESSION['status_code'] = "success";
             header("Location: ../tutor/subscription_check.php");
             exit(0);
         } elseif ($_SESSION['user_type'] == '1') {

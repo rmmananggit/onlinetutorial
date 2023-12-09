@@ -81,7 +81,7 @@ include('./includes/sidenav.php');
                                 </div>
 
                                 <div class="text-right">
-                                    <a href="my_tutoring_services.php" class="btn btn-danger">Back</a>
+                                    <a href="index.php" class="btn btn-danger">Back</a>
                                 </div>
                             </form>
                     <?php
