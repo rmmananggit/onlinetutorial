@@ -35,13 +35,12 @@
                 <tbody>
               <?php
 
-                            $user_id = $_SESSION['auth_user']['user_id'];
+                        $user_id = $_SESSION['auth_user']['user_id'];
                             $query = "SELECT
                             job_module.module_title, 
                             job_module.module_description, 
                             job.title, 
-                            job_application.`status`, 
-                            job_application.user_id, 
+                            job.`status`, 
                             job_module.module_id
                         FROM
                             job_module
@@ -49,13 +48,8 @@
                             job
                             ON 
                                 job_module.job_id = job.job_id
-                            INNER JOIN
-                            job_application
-                            ON 
-                                job.job_id = job_application.job_id
                         WHERE
-                            job_application.user_id = '$user_id' AND
-                            job_application.`status` = 'Ongoing'";
+                            job.user_id = $user_id";
                             $query_run = mysqli_query($con, $query);
                             if(mysqli_num_rows($query_run) > 0)
                             {

@@ -37,9 +37,6 @@ function getFileIcon($extension) {
     </nav>
 </div>
 
-<div class="col-md-12 mt-2 mb-2">
-    <a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#addFileModal" style="float: right;">Add File</a>
-</div>
 
 <div class="container-fluid mt-5">
     <div class="row">
@@ -59,7 +56,7 @@ function getFileIcon($extension) {
                     $fileExtension = pathinfo($row['file_type'], PATHINFO_EXTENSION);
                     $fileIcon = getFileIcon($fileExtension);
                 ?>
-                    <div class="card" style="width: 18rem;">
+                    <div class="card ml-3" style="width: 18rem;">
                         <i class="<?= $fileIcon ?> fa-3x mt-2"></i>
                         <div class="card-body text-center">
                             <h5 class="card-title"><?= $row['title'] ?></h5>
@@ -106,7 +103,7 @@ function getFileIcon($extension) {
                 ?>
                 <form action="process.php" method="POST" enctype="multipart/form-data" autocomplete="off">
                     <!-- Add a hidden input field to store module_id -->
-                    <input type="hidden" name="module_id" id="module_id" value="<?= $id ?>">
+                    <input type="text" name="module_id" id="module_id" value="<?= $id ?>">
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control" id="title" name="title">

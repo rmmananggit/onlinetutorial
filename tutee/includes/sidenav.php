@@ -31,11 +31,20 @@
                           
                            
                             <div class="sb-sidenav-menu-heading">Others</div>
-                            <a class="nav-link" href="learning_resources.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>Learning Resources
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-person"></i></div>
+                                Learning Materials
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="submit_learning.php">Submit</a>
+                                    <a class="nav-link" href="learning_resources.php">Learning Materials</a>
+                                </nav>
+                            </div>
                           
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="feedback.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sticky-note"></i></div>Feedback and Review
                             </a>
                             <div class="sb-sidenav-menu-heading">Other</div>
