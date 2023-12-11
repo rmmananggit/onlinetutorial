@@ -21,16 +21,20 @@ include('./includes/sidenav.php');
                     <thead>
                         <tr>
                             <th>Tutorial Title</th>
-                            <th>Module</th>
-                            <th>Description</th>
+                            <th>Tutor</th>
+                            <th>Feedback</th>
+							<th>Review</th>
+							<th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Tutorial Title</th>
-                            <th>Module</th>
-                            <th>Description</th>
+							<th>Tutorial Title</th>
+                            <th>Tutor</th>
+                            <th>Feedback</th>
+							<th>Review</th>
+							<th>Status</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

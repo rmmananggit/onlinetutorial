@@ -17,15 +17,6 @@
           </nav>
 </div>
 
-<div class="container mt-3">
-    <nav aria-label="breadcrumb" class="main-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a>Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">All Tutoring Services</li>
-        </ol>
-    </nav>
-</div>
-
 <div class="col-lg-12">
     <div class="candidate-list-widgets mb-4">
         <form action="#" class="">

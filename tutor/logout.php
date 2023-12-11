@@ -7,6 +7,6 @@ unset( $_SESSION['auth_user']);
 
 $_SESSION['status'] = "You have been logout!";
 $_SESSION['status_code'] = "success";
-header("Location: ../login/index.php");
+header("Location: ../loginpage/index.php");
 exit(0);
 ?>
