@@ -230,6 +230,7 @@ if(isset($_GET['id']))
       job.rate_description, 
       job.`status`, 
       job.date_posted, 
+      job.user_id,
       tutor.address, 
       tutor.skills, 
       job_module.module_title, 
@@ -239,7 +240,7 @@ if(isset($_GET['id']))
       INNER JOIN
       job
       ON 
-          user_accounts.user_id = job.tutor_id
+          user_accounts.user_id = job.user_id
       INNER JOIN
       tutor
       ON 
@@ -260,7 +261,8 @@ if(isset($_GET['id']))
               ?>
 
 <form action="process.php" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="job_id" value="<?= $user['job_id']; ?>">
+    <input type="text" name="job_id" value="<?= $user['job_id']; ?>">
+    <input type="text" name="tutor" value="<?= $user['user_id']; ?>">
 
             <div class="card-body pb-0">
                 <div class="row align-items-center">

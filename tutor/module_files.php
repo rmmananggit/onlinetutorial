@@ -106,7 +106,7 @@ function getFileIcon($extension) {
                 ?>
                 <form action="process.php" method="POST" enctype="multipart/form-data" autocomplete="off">
                     <!-- Add a hidden input field to store module_id -->
-                    <input type="text" name="module_id" id="module_id" value="<?= $id ?>">
+                    <input type="hidden" name="module_id" id="module_id" value="<?= $id ?>">
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control" id="title" name="title">

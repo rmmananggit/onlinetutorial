@@ -15,7 +15,7 @@ if (isset($_POST['create_tutoring_services'])) {
     $endTimes = $_POST['endtime'];
 
     // Insert data into the job table
-    $queryJob = "INSERT INTO `job`(`tutor_id`, `title`, `description`, `rate`, `rate_description`, `date_posted`) VALUES ('$tutor_id','$title','$description','$rate','$rate_description','$currentDateTime')";
+    $queryJob = "INSERT INTO `job`(`user_id`, `title`, `description`, `rate`, `rate_description`, `date_posted`) VALUES ('$tutor_id','$title','$description','$rate','$rate_description','$currentDateTime')";
     $query_run_job = mysqli_query($con, $queryJob);
 
     if ($query_run_job) {
@@ -271,26 +271,40 @@ if (isset($_POST['add_file'])) {
     $description = $_POST['description'];
 
     // File upload handling
-    $uploadDir = 'uploads/'; // Directory to store uploaded files
+    $uploadDir = './uploads/'; // Directory to store uploaded files
     $fileName = $_FILES['fileInput']['name'];
     $fileTmpName = $_FILES['fileInput']['tmp_name'];
     $fileType = $_FILES['fileInput']['type'];
 
     // Move the uploaded file to the server
     $filePath = $uploadDir . $fileName;
-    $query = "INSERT INTO `job_module_files`(`module_id`, `title`, `description`, `file_name`, `file_type`, `file_path`) VALUES ('$module_id','$title','$description','$fileName','$fileType','$filePath')";
-    $query_run = mysqli_query($con, $query);
-    
-    if($query_run)
-    {
-        $_SESSION['status'] = "File has been added successfully";
-        $_SESSION['status_code'] = "success";
-      header('Location: module_files.php');
-        exit(0);
+
+    // Check if the directory exists, if not, create it
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
     }
-    else
-    {
-      header('Location: module_files.php');
+
+    if (move_uploaded_file($fileTmpName, $filePath)) {
+        // File has been moved successfully
+        $query = "INSERT INTO `job_module_files`(`module_id`, `title`, `description`, `file_name`, `file_type`, `file_path`) VALUES ('$module_id','$title','$description','$fileName','$fileType','$filePath')";
+        $query_run = mysqli_query($con, $query);
+
+        if ($query_run) {
+            $_SESSION['status'] = "File has been added successfully";
+            $_SESSION['status_code'] = "success";
+            header('Location: learning_resources.php');
+            exit(0);
+        } else {
+            $_SESSION['status'] = "Error adding file to the database";
+            $_SESSION['status_code'] = "error";
+            header('Location: learning_resources.php');
+            exit(0);
+        }
+    } else {
+        // File move failed
+        $_SESSION['status'] = "Error moving the file to the server";
+        $_SESSION['status_code'] = "error";
+        header('Location: learning_resources.php');
         exit(0);
     }
 }

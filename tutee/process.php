@@ -62,8 +62,10 @@ if(isset($_POST['apply']))
 {
     $user_id = $_SESSION['auth_user']['user_id'];
     $job_id = $_POST['job_id'];
+    $tutor = $_POST['tutor'];
+    $status = "Pending";
 
-    $query = "INSERT INTO `job_application`(`job_id`, `tutee_id`) VALUES ('$job_id','$user_id')";
+    $query = "INSERT INTO `job_application`(`job_id`, `tutor_id`, `user_id`) VALUES ('$job_id','$tutor','$user_id')";
     $query_run = mysqli_query($con, $query);
     
     if($query_run)
