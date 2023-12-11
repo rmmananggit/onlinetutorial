@@ -20,7 +20,7 @@
                             </a>
 
                             <a class="nav-link" href="hire.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>Tutor Application
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>Tutor Applicants
                             </a>
 
                             <a class="nav-link" href="message.php">
@@ -31,10 +31,7 @@
                             <a class="nav-link" href="learning_resources.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>Learning Resources
                             </a>
-                           
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-sticky-note"></i></div>Feedback and Review
-                            </a>
+                    
                             <div class="sb-sidenav-menu-heading">Other</div>
                             <a class="nav-link" href="subscription_dashboard.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-circle"></i></div>Membership

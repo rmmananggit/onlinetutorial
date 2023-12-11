@@ -20,7 +20,7 @@ include('./includes/sidenav.php');
                         $id = $_GET['id'];
                         $query = "SELECT
                             job.job_id, 
-                            job.tutor_id, 
+                            job.user_id, 
                             job.title, 
                             job.description, 
                             job.rate, 

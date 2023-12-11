@@ -37,19 +37,25 @@
 
                             $user_id = $_SESSION['auth_user']['user_id'];
                             $query = "SELECT
-                            job_module.module_id, 
                             job_module.module_title, 
                             job_module.module_description, 
                             job.title, 
-                            job.user_id
+                            job_application.`status`, 
+                            job_application.user_id, 
+                            job_module.module_id
                         FROM
-                            job
-                            INNER JOIN
                             job_module
+                            INNER JOIN
+                            job
                             ON 
-                                job.job_id = job_module.job_id
+                                job_module.job_id = job.job_id
+                            INNER JOIN
+                            job_application
+                            ON 
+                                job.job_id = job_application.job_id
                         WHERE
-                            job.user_id = $user_id";
+                            job_application.user_id = '$user_id' AND
+                            job_application.`status` = 'Ongoing'";
                             $query_run = mysqli_query($con, $query);
                             if(mysqli_num_rows($query_run) > 0)
                             {

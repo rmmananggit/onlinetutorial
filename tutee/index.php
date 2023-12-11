@@ -17,54 +17,45 @@
           </nav>
 </div>
 
- <div class="col-lg-12">
-                <div class="candidate-list-widgets mb-4">
-                    <form action="#" class="">
-                        <div class="g-2 row">
-                            <div class="col-lg-4">
-                            <div class="filler-job-form">
-                            <i class="uil uil-location-point"></i>
-                            <select class="form-select selectForm__inner" data-trigger="true" name="choices-single-location" id="choices-single-location" aria-label="Default select example" required>
+<div class="container mt-3">
+    <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">All Tutoring Services</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-lg-12">
+    <div class="candidate-list-widgets mb-4">
+        <form action="#" class="">
+            <div class="g-2 row">
+                <div class="col-lg-4">
+                    <div class="filler-job-form">
+                        <i class="uil uil-location-point"></i>
+                        <select class="form-select selectForm__inner" data-trigger="true" name="category" id="category" aria-label="Default select example" required>
                             <option selected disabled>Select Category</option>
                             <option value="Academic">Academic</option>
                             <option value="Non Academic">Non Academic</option>
-                            </select>
-                            </div>
-                            </div>
-                           
-                                                        <!-- Second dropdown for Academic subjects -->
-                            <div class="col-lg-4" id="academicSubjects" style="display: none;">
-                                <div class="filler-job-form">
-                                    <i class="uil uil-location-point"></i>
-                                    <select class="form-select selectForm__inner" name="academicSubjects" aria-label="Default select example" required>
-                                        <option selected disabled>Select Academic Subject</option>
-                                        <option value="Science">Science</option>
-                                        <option value="Math">Math</option>
-                                        <option value="English">English</option>
-                                    </select>
-                                </div>
-                            </div>
+                        </select>
+                    </div>
+                </div>
 
-                            <!-- Second dropdown for Non Academic subjects -->
-                            <div class="col-lg-4" id="nonAcademicSubjects" style="display: none;">
-                                <div class="filler-job-form">
-                                    <i class="uil uil-location-point"></i>
-                                    <select class="form-select selectForm__inner" name="nonAcademicSubjects" aria-label="Default select example" required>
-                                        <option selected disabled>Select Non Academic Subject</option>
-                                        <option value="Guitar Lesson">Guitar Lesson</option>
-                                        <option value="Public Speaking Masterclass">Public Speaking Masterclass</option>
-                                        <option value="Bookkeeping NC III">Bookkeeping NC III</option>
-                                    </select>
-                                </div>
-                            </div>
-                         
-                            <div class="col-lg-4">
-                                <div class="filler-job-form">
-                                    <i class="uil uil-location-point"></i>
-                                    <select class="form-select selectForm__inner" data-trigger="true" name="choices-single-location" id="choices-single-location" aria-label="Default select example" required>
-                                       
-                                    <option selected disabled>Select Municipality</option>
-                                        <option value="Academic">Academic</option>
+                <!-- Second dropdown for Academic and Non Academic subjects -->
+                <div class="col-lg-4" id="subjectDropdown" style="display: none;">
+                    <div class="filler-job-form">
+                        <i class="uil uil-location-point"></i>
+                        <select class="form-select selectForm__inner" name="subjects" id="subjects" aria-label="Default select example" required>
+                            <option selected disabled>Select Subject</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="filler-job-form">
+                        <i class="uil uil-location-point"></i>
+                        <select class="form-select selectForm__inner" data-trigger="true" name="municipality" id="municipality" aria-label="Default select example" required>
+                            <option selected disabled>Select Municipality</option>
                                         <option value="Aloran">Aloran</option>
                                         <option value="Aloran">Baliangao</option>
                                         <option value="Bonifacio">Bonifacio</option>
@@ -83,14 +74,14 @@
                                         <option value="Tangub City">Tangub City</option>
                                         <option value="Tudela">Tudela</option>
 
-                                    </select>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </form>
+                        </select>
+                    </div>
                 </div>
+
             </div>
+        </form>
+    </div>
+</div>
 
 <section class="section">
     <div class="container">
@@ -128,26 +119,20 @@
 
             $query = "SELECT
             job.job_id, 
+            job.user_id, 
             job.title, 
             job.description, 
             job.rate, 
             job.rate_description, 
             job.`status`, 
             job.date_posted, 
+            tutor.municipality,
             tutor.address, 
-            tutor.profile_picture, 
-            tutor.skills,
-            user_accounts.user_id
+            tutor.profile_picture,
+            tutor.skills
         FROM
-            job
-            INNER JOIN
-            user_accounts
-            ON 
-                job.tutor_id = user_accounts.user_id
-            INNER JOIN
+            job,
             tutor
-            ON 
-                user_accounts.user_id = tutor.user_id
         ORDER BY
             job.date_posted DESC";
 
@@ -158,7 +143,7 @@
                 while ($row = mysqli_fetch_assoc($query_run)) {
                     // Check if the user has applied for this job
                     $jobId = $row['job_id'];
-                    $checkApplicationQuery = "SELECT * FROM job_application WHERE tutee_id = $id AND job_id = $jobId";
+                    $checkApplicationQuery = "SELECT * FROM job_application WHERE user_id = $id AND job_id = $jobId";
                     $checkApplicationResult = mysqli_query($con, $checkApplicationQuery);
                     $isApplied = mysqli_num_rows($checkApplicationResult) > 0;
 
@@ -283,28 +268,41 @@
 
 
 <script>
-    document.getElementById('choices-single-location').addEventListener('change', function () {
-        var academicSubjects = document.getElementById('academicSubjects');
-        var nonAcademicSubjects = document.getElementById('nonAcademicSubjects');
+    document.getElementById('category').addEventListener('change', function () {
+        var subjectDropdown = document.getElementById('subjectDropdown');
+        var subjectsSelect = document.getElementById('subjects');
 
-        if (this.value === 'Academic') {
-            academicSubjects.style.display = 'block';
-            nonAcademicSubjects.style.display = 'none';
-        } else if (this.value === 'Non Academic') {
-            academicSubjects.style.display = 'none';
-            nonAcademicSubjects.style.display = 'block';
+        if (this.value === 'Academic' || this.value === 'Non Academic') {
+            subjectDropdown.style.display = 'block';
+            // Add subjects dynamically based on the selected category
+            subjectsSelect.innerHTML = '<option selected disabled>Select Subject</option>';
+            if (this.value === 'Academic') {
+                subjectsSelect.innerHTML += '<option value="Science">Science</option>';
+                subjectsSelect.innerHTML += '<option value="Math">Math</option>';
+                subjectsSelect.innerHTML += '<option value="English">English</option>';
+                // Add other academic subjects as needed
+            } else if (this.value === 'Non Academic') {
+                subjectsSelect.innerHTML += '<option value="Guitar Lesson">Guitar Lesson</option>';
+                subjectsSelect.innerHTML += '<option value="Public Speaking Masterclass">Public Speaking Masterclass</option>';
+                subjectsSelect.innerHTML += '<option value="Bookkeeping NC III">Bookkeeping NC III</option>';
+                // Add other non-academic subjects as needed
+            }
         } else {
-            academicSubjects.style.display = 'none';
-            nonAcademicSubjects.style.display = 'none';
+            subjectDropdown.style.display = 'none';
         }
     });
 </script>
 
-
 <script>
-    function setJobIdToDelete(jobId) {
-        document.getElementById('job_id').value = jobId;
-    }
+    document.getElementById('municipality').addEventListener('change', function () {
+        var selectedMunicipality = this.value;
+        var cards = document.querySelectorAll('.candidate-list-box');
+
+        cards.forEach(function (card) {
+            var cardMunicipality = card.getAttribute('data-municipality');
+            card.style.display = (selectedMunicipality === 'All' || selectedMunicipality === cardMunicipality) ? 'block' : 'none';
+        });
+    });
 </script>
 
 
@@ -313,3 +311,4 @@
 <?php
  include('./includes/footer.php');
  ?>
+

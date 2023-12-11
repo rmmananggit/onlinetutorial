@@ -8,50 +8,55 @@ include('./includes/sidenav.php');
 <div class="container-fluid px-4 mt-4">
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Tutor</li>
+        <li class="breadcrumb-item active">Learning Materials</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-           My Application
+           Modules
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="datatablesSimple" class="table table-bordered" width="300px">
+                <table id="datatablesSimple" class="table table-bordered" width="400px">
                     <thead>
                         <tr>
-                            <th>Job Title</th>
+                            <th>Tutorial Title</th>
+                            <th>Module</th>
                             <th>Description</th>
-                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Job Title</th>
+                            <th>Tutorial Title</th>
+                            <th>Module</th>
                             <th>Description</th>
-                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php
                         $user_id = $_SESSION['auth_user']['user_id'];
                         $query = "SELECT
+                        job_module.module_title, 
+                        job_module.module_description, 
                         job.title, 
-                        job.description, 
-                        job_application.user_id, 
                         job_application.`status`, 
-                        job_application.date_applied
+                        job_application.user_id, 
+                        job_module.module_id
                     FROM
-                        job_application
+                        job_module
                         INNER JOIN
                         job
                         ON 
-                            job_application.job_id = job.job_id
+                            job_module.job_id = job.job_id
+                        INNER JOIN
+                        job_application
+                        ON 
+                            job.job_id = job_application.job_id
                     WHERE
-                        job_application.user_id = $user_id AND
-                        job_application.`status` = 'Pending'
-                    ORDER BY
-                        job_application.date_applied DESC";
+                        job_application.user_id = '$user_id' AND
+                        job_application.`status` = 'Ongoing'";
                         $query_run = mysqli_query($con, $query);
                         if (mysqli_num_rows($query_run) > 0) {
                             foreach ($query_run as $row) {
@@ -59,9 +64,14 @@ include('./includes/sidenav.php');
                                 <tr>
 
                                     <td width="100px"><?= $row['title']; ?></td>
-                                    <td width="100px"><?= $row['description']; ?></td>
-                                    <td width="100px" style="color: <?= $row['status'] === 'Accepted' ? 'green' : ($row['status'] === 'Rejected' ? 'red' : ($row['status'] === 'Ongoing' ? 'orange' : 'black')) ?>; font-weight: bold;">
-                                    <?= $row['status'] ?>
+                                    <td width="100px"><?= $row['module_title']; ?></td>
+                                    <td width="100px"><?= $row['module_description']; ?></td>
+                                    <td width="100px">
+                                    <form action="process.php" method="POST">  
+                                    <div class="btn-group" rolez="group" aria-label="Basic outlined example">
+                                    <a type="button" class="btn btn-outline-primary" href="module_files.php?id=<?=$row['module_id'];?>">View</a>
+                                    </div>
+                                    </form>
                                     </td>
                                 
                                 </tr>

@@ -31,12 +31,10 @@
                           
                            
                             <div class="sb-sidenav-menu-heading">Others</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="learning_resources.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>Learning Resources
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-spinner"></i></div>Learning Progress
-                            </a>
+                          
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sticky-note"></i></div>Feedback and Review
                             </a>

@@ -263,3 +263,83 @@ if (isset($_POST['update_account'])) {
     header('Location: my_profile.php');
     exit(0);
 }
+
+if (isset($_POST['add_file'])) {
+    // Retrieve form data
+    $module_id = $_POST['module_id'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+
+    // File upload handling
+    $uploadDir = 'uploads/'; // Directory to store uploaded files
+    $fileName = $_FILES['fileInput']['name'];
+    $fileTmpName = $_FILES['fileInput']['tmp_name'];
+    $fileType = $_FILES['fileInput']['type'];
+
+    // Move the uploaded file to the server
+    $filePath = $uploadDir . $fileName;
+    $query = "INSERT INTO `job_module_files`(`module_id`, `title`, `description`, `file_name`, `file_type`, `file_path`) VALUES ('$module_id','$title','$description','$fileName','$fileType','$filePath')";
+    $query_run = mysqli_query($con, $query);
+    
+    if($query_run)
+    {
+        $_SESSION['status'] = "File has been added successfully";
+        $_SESSION['status_code'] = "success";
+      header('Location: module_files.php');
+        exit(0);
+    }
+    else
+    {
+      header('Location: module_files.php');
+        exit(0);
+    }
+}
+
+
+if (isset($_POST['accept'])) {
+    $applicationId = $_POST['id'];
+    $status = "Accept";
+    
+    $query = "UPDATE `job_application` SET `status`='$status' WHERE `application_id`= $applicationId";
+    $query_run = mysqli_query($con, $query);
+    
+    if($query_run)
+    {
+        $_SESSION['status'] = "Application Accepted";
+        $_SESSION['status_code'] = "success";
+      header('Location: hire.php');
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['status'] = "Something went wrong!";
+        $_SESSION['status_code'] = "error";
+      header('Location: hire.php');
+        exit(0);
+    }
+
+} 
+
+    if (isset($_POST['reject'])) {
+    $applicationId = $_POST['id'];
+    $status = "Rejected";
+    
+    $query1 = "UPDATE `job_application` SET `status`='$status' WHERE `application_id`= $applicationId";
+    $query_run = mysqli_query($con, $query1);
+    
+    if($query_run)
+    {
+        $_SESSION['status'] = "Application Rejected";
+        $_SESSION['status_code'] = "error";
+      header('Location: hire.php');
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['status'] = "Something went wrong!";
+        $_SESSION['status_code'] = "error";
+      header('Location: hire.php');
+        exit(0);
+    }
+
+}
