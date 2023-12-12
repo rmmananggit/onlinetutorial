@@ -8,11 +8,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Dashboard
                             </a>
 
-                            <div class="sb-sidenav-menu-heading">View</div>
-                            <a class="nav-link" href="my_profile.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>My Profile
-                            </a>
-
                             <div class="sb-sidenav-menu-heading">Manage</div>
 
 
@@ -43,10 +38,7 @@
                                     <a class="nav-link" href="learning_resources.php">Learning Materials</a>
                                 </nav>
                             </div>
-                          
-                            <a class="nav-link" href="feedback.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-sticky-note"></i></div>Feedback and Review
-                            </a>
+                        
                             <div class="sb-sidenav-menu-heading">Other</div>
                             <a class="nav-link" href="subscription_dashboard.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-circle"></i></div>Membership

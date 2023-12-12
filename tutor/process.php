@@ -167,6 +167,8 @@ if(isset($_POST['submit_payment']))
 }
 
 
+
+
 if (isset($_POST['update_account'])) {
     $user_id = $_POST['user_id'];
     $fname = $_POST['fname'];
@@ -271,7 +273,7 @@ if (isset($_POST['add_file'])) {
     $description = $_POST['description'];
 
     // File upload handling
-    $uploadDir = './uploads/'; // Directory to store uploaded files
+    $uploadDir = '../uploads/'; // Directory to store uploaded files
     $fileName = $_FILES['fileInput']['name'];
     $fileTmpName = $_FILES['fileInput']['tmp_name'];
     $fileType = $_FILES['fileInput']['type'];
@@ -313,11 +315,16 @@ if (isset($_POST['add_file'])) {
 if (isset($_POST['accept'])) {
     $applicationId = $_POST['id'];
     $status = "Accept";
+    $job = $_POST['job_id'];
+    $status = "Ongoing";
     
     $query = "UPDATE `job_application` SET `status`='$status' WHERE `application_id`= $applicationId";
     $query_run = mysqli_query($con, $query);
+
+    $query1 = "UPDATE `job` SET `status`='$status' WHERE `job_id` = $job";
+    $query_run1 = mysqli_query($con, $query1);
     
-    if($query_run)
+    if($query_run && $query_run1)
     {
         $_SESSION['status'] = "Application Accepted";
         $_SESSION['status_code'] = "success";

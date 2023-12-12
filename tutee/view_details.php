@@ -48,20 +48,28 @@ include('./includes/sidenav.php');
                     if (isset($_GET['id'])) {
                         $id = $_GET['id'];
                         $users = "SELECT
-                        user_accounts.firstname, 
-                        user_accounts.lastname, 
-                        user_accounts.phone_number, 
+                        job.user_id, 
                         job.title, 
                         job.description, 
                         job.rate, 
                         job.rate_description, 
-                        tutor.gender, 
-                        tutor.address, 
                         tutor.profile_picture, 
+                        tutor.address, 
+                        tutor.gender, 
                         job_module.module_title, 
-                        job_module.module_description
+                        job_module.module_description, 
+                        user_accounts.firstname, 
+                        user_accounts.lastname, 
+                        user_accounts.phone_number, 
+                        review.review, 
+                        review.stars, 
+                        review.date
                     FROM
                         job
+                        INNER JOIN
+                        job_module
+                        ON 
+                            job.job_id = job_module.job_id
                         INNER JOIN
                         user_accounts
                         ON 
@@ -71,11 +79,11 @@ include('./includes/sidenav.php');
                         ON 
                             user_accounts.user_id = tutor.user_id
                         INNER JOIN
-                        job_module
+                        review
                         ON 
-                            job.job_id = job_module.job_id
+                            job.user_id = review.tutor_id
                     WHERE
-                        job.job_id = $id";
+                        job.user_id = $id";
                         $users_run = mysqli_query($con, $users);
                     ?>
                         <?php
@@ -95,16 +103,36 @@ include('./includes/sidenav.php');
                                         <p class="text-secondary mb-1">Tutor</p>
                                         <p class="text-muted font-size-sm"><?= $user['address']; ?></p>
                                         <button class="btn btn-outline-primary">Message</button>
+                                        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#reviewModal" data-job-user-id="<?= $user['user_id']; ?>">Review</button>
                                     </div>
                                 </div>
                                 <hr class="my-4">
+						<h5><u>Review</u></h5>
 
-
+                        <div class="form-group">
+                        <textarea class="form-control" name="comment" rows="7" maxlength="200" id="description" placeholder="Max character is 200." disabled><?= $user['review']; ?></textarea>
+                    </div>
+                    <div class="form-group">
+    <label for="rating" class="d-block mb-2">Rating:</label>
+    <div class="rating">
+        <?php
+        $stars = $user['stars'];
+        for ($i = 5; $i >= 1; $i--) {
+            $checked = ($stars == $i) ? 'checked' : '';
+            echo '<input type="radio" id="star' . $i . '" name="rating" value="' . $i . '" ' . $checked . ' disabled>';
+            echo '<label for="star' . $i . '">' . $i . '</label>';
+        }
+        ?>
+    </div>
+</div>
 
 
                             </div>
                 </div>
             </div>
+
+            
+            
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
@@ -186,6 +214,8 @@ include('./includes/sidenav.php');
                 </div>
             </div>
         </div>
+
+        
     </div>
 </div>
 
@@ -195,6 +225,63 @@ include('./includes/sidenav.php');
                         <?php
                     }
                     ?>
+
+
+ <!-- Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Review Tutor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="process.php" method="POST">
+                <input type="hidden" name="module_id" id="module_id" value="<?= $user['user_id'] ?>">
+                    <input type="hidden" name="job_user_id" id="job_user_id" value="">
+                    <div class="form-group">
+                        <label for="description">Comment:</label>
+                        <textarea class="form-control" name="comment" rows="7" maxlength="200" id="description" placeholder="Max character is 200."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating" class="d-block mb-2">Rate this tutor:</label>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5"></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4"></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3"></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2"></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1"></label>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" name="addreview" class="btn btn-primary">Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add this script at the end of your HTML body or in the head section -->
+<script>
+    $(document).ready(function() {
+        $('#reviewModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var jobUserId = button.data('job-user-id'); // Extract job_user_id from data-* attributes
+            $('#job_user_id').val(jobUserId); // Set the value to the hidden input field
+        });
+    });
+</script>
+
+
 
                     <?php
                     include('./includes/footer.php');

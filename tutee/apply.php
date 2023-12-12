@@ -261,8 +261,8 @@ if(isset($_GET['id']))
               ?>
 
 <form action="process.php" method="POST" enctype="multipart/form-data">
-    <input type="text" name="job_id" value="<?= $user['job_id']; ?>">
-    <input type="text" name="tutor" value="<?= $user['user_id']; ?>">
+    <input type="hidden" name="job_id" value="<?= $user['job_id']; ?>">
+    <input type="hidden" name="tutor" value="<?= $user['user_id']; ?>">
 
             <div class="card-body pb-0">
                 <div class="row align-items-center">

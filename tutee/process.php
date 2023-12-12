@@ -91,6 +91,10 @@ if (isset($_POST['update_account'])) {
     $lname = $_POST['lname'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
+    $aboutme = $_POST['aboutme'];
+    $address = $_POST['address'];
+    $brgy = $_POST['brgy'];
+    $municipality = $_POST['municipality'];
     $newpass = $_POST['newpass'];
     $cpass = $_POST['cpass'];
 
@@ -98,7 +102,7 @@ if (isset($_POST['update_account'])) {
     if ($newpass !== $cpass) {
         $_SESSION['status'] = "New password and confirm password do not match!";
         $_SESSION['status_code'] = "error";
-        header('Location: my_profile.php');
+        header('Location: settings.php');
         exit(0);
     }
 
@@ -109,7 +113,7 @@ if (isset($_POST['update_account'])) {
     if (mysqli_num_rows($check_email_result) > 0) {
         $_SESSION['status'] = "Email is already taken!";
         $_SESSION['status_code'] = "error";
-        header('Location: my_profile.php');
+        header('Location: settings.php');
         exit(0);
     }
 
@@ -134,7 +138,9 @@ if (isset($_POST['update_account'])) {
     }
 
     $update_query = "UPDATE `user_accounts` SET $update_data WHERE `user_id`='$user_id'";
+    $update_query1 = "UPDATE `tutee` SET `address`='$address',`barangay`='$brgy',`municipality`='$municipality',`aboutme`='$aboutme' WHERE `user_id`='$user_id'";
     $update_result = mysqli_query($con, $update_query);
+    $update_result1 = mysqli_query($con, $update_query1);
 
     if (!$update_result) {
         $_SESSION['status'] = "Something went wrong!";
@@ -166,18 +172,113 @@ if (isset($_POST['update_account'])) {
             if (!$update_photo_result) {
                 $_SESSION['status'] = "Something went wrong!";
                 $_SESSION['status_code'] = "error";
-                header('Location: my_profile.php');
+                header('Location: settings.php.php');
                 exit(0);
             }
         }
     
         $_SESSION['status'] = "Your Account has been updated!";
         $_SESSION['status_code'] = "success";
-        header('Location: my_profile.php');
+        header('Location: settings.php.php');
         exit(0);
 
     $_SESSION['status'] = "Your Account has been updated!";
     $_SESSION['status_code'] = "success";
-    header('Location: my_profile.php');
+    header('Location: settings.php.php');
     exit(0);
 }
+
+if (isset($_POST['submit_module_file'])) {
+    // Retrieve form data
+    $user_id = $_SESSION['auth_user']['user_id'];
+    $module = $_POST['module'];
+    $module_description = $_POST['module_description'];
+
+    // File upload handling
+    $uploadDir = '../uploads/'; // Directory to store uploaded files
+    $fileName = $_FILES['fileInput']['name'];
+    $fileTmpName = $_FILES['fileInput']['tmp_name'];
+    $fileType = $_FILES['fileInput']['type'];
+
+    // Move the uploaded file to the server
+    $filePath = $uploadDir . $fileName;
+
+    // Check if the directory exists, if not, create it
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    if (move_uploaded_file($fileTmpName, $filePath)) {
+        $query = " INSERT INTO `submit_module`(`description`, `file_name`, `file_type`, `file_path`, `module_id`, `user_id`) VALUES ('$module_description','$fileName','$fileType','$filePath','$module','$user_id')";
+        $query_run = mysqli_query($con, $query);
+
+        if ($query_run) {
+            $_SESSION['status'] = "File has been submitted successfully";
+            $_SESSION['status_code'] = "success";
+            header('Location: submit_learning.php');
+            exit(0);
+        } else {
+            $_SESSION['status'] = "Error adding file to the database";
+            $_SESSION['status_code'] = "error";
+            header('Location: submit_learning.php');
+            exit(0);
+        }
+    } else {
+        // File move failed
+        $_SESSION['status'] = "Error moving the file to the server";
+        $_SESSION['status_code'] = "error";
+        header('Location: submit_learning.php');
+        exit(0);
+    }
+}
+
+if(isset($_POST['delete_submit_file']))
+{
+    $delete_submit_file = $_POST['delete_submit_file'];
+
+    $query = "DELETE FROM `submit_module` WHERE `submit_id`= '2' ";
+    $query_run = mysqli_query($con, $query);
+    
+    if($query_run)
+    {
+        $_SESSION['status'] = "Deleted sucessfully";
+        $_SESSION['status_code'] = "success";
+    header('Location: submit_learning.php');
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['status'] = "Something went wrong!";
+        $_SESSION['status_code'] = "error";
+    header('Location: submit_learning.php');
+        exit(0);
+    }
+}   
+
+
+if(isset($_POST['addreview']))
+{
+    $tutor_id = $_POST['module_id'];
+    $review = $_POST['comment'];
+    $rating = $_POST['rating'];
+    $date = date('Y-m-d');
+
+
+    $query = "INSERT INTO `review` (`tutor_id`, `review`, `start`, `date`) VALUES ('$tutor_id', '$review', '$rating', '$date')";
+    $query_run = mysqli_query($con, $query);
+    
+    if($query_run)
+    {
+        $_SESSION['status'] = "Your review has been posted";
+        $_SESSION['status_code'] = "success";
+    header('Location: ongoing_tutor.php');
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['status'] = "Something went wrong!";
+        $_SESSION['status_code'] = "error";
+    header('Location: ongoing_tutor.php');
+        exit(0);
+    }
+}   

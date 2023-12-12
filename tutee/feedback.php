@@ -38,16 +38,17 @@ include('./includes/sidenav.php');
                     </tfoot>
                     <tbody>
                         <?php
-                                 $user_id = $_SESSION['auth_user']['user_id'];
+                            $user_id = $_SESSION['auth_user']['user_id'];
                             $query = "SELECT
                             job_application.application_id, 
-                            job.title, 
-                            job.description, 
-                            job.stars, 
-                            job.feedback, 
-                            job.feedback_date, 
-                            job.user_id, 
-                            job_application.user_id
+                            job_application.date_applied, 
+                            job_application.job_id, 
+                            job_application.tutor_id, 
+                            job_application.user_id, 
+                            job_application.stars, 
+                            job_application.review, 
+                            job_application.feedback_date, 
+                            job.title
                         FROM
                             job_application
                             INNER JOIN
@@ -66,14 +67,17 @@ include('./includes/sidenav.php');
                                     <td width="100px" style="color: <?= $row['stars'] !== null ? 'black' : 'red'; ?>">
     <?= $row['stars'] !== null ? $row['stars'] : '<span style="color: red;">No feedback yet</span>'; ?>
 </td>
-<td width="100px" style="color: <?= $row['feedback'] !== null ? 'black' : 'red'; ?>">
-    <?= $row['feedback'] !== null ? $row['feedback'] : '<span style="color: red;">No feedback yet</span>'; ?>
+<td width="100px" style="color: <?= $row['review'] !== null ? 'black' : 'red'; ?>">
+    <?= $row['review'] !== null ? $row['review'] : '<span style="color: red;">No feedback yet</span>'; ?>
 </td>
 <td width="100px" style="color: <?= $row['feedback_date'] !== null ? 'black' : 'red'; ?>">
     <?= $row['feedback_date'] !== null ? $row['feedback_date'] : '<span style="color: red;">No feedback yet</span>'; ?>
 </td>
                                     <td width="100px">
-                                    <a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#addFileModal">Add Review</a>
+                                    <form action="process.php" method="POST">  
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+<a type="button" class="btn btn-outline-primary" href="review.php?id=<?=$row['tutor_id'];?>">View</a>
+</div>
                                     </td>
                                 
                                 </tr>
@@ -94,76 +98,6 @@ include('./includes/sidenav.php');
     </div>
 </div>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="addFileModal" tabindex="-1" role="dialog" aria-labelledby="addFileModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addFileModalLabel">Add File</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Your form for adding files can go here -->
-                <!-- For simplicity, let's add a placeholder form -->
-                <?php
-                // Check if 'id' is set in the URL
-                if (isset($_GET['id'])) {
-                    $id = $_GET['id'];
-                ?>
-                <form action="process.php" method="POST" enctype="multipart/form-data" autocomplete="off">
-                    <!-- Add a hidden input field to store module_id -->
-                    <input type="text" name="module_id" id="module_id" value="<?= $id ?>">
-                    <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" class="form-control" id="title" name="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea class="form-control" name="description" rows="7" maxlength="200" id="description" placeholder="Max character is 200."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="fileInput">File Input:</label>
-                        <input type="file" class="form-control" id="fileInput" name="fileInput" accept="image/*,video/*,.ppt,.pptx,.doc,.docx">
-                    </div>
-                    <button type="submit" name="add_file" class="btn btn-primary" style="float: right;">Upload</button>
-                </form>
-                <?php } else {
-                    echo "Module ID not provided in the URL.";
-                } ?>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div class="container">
-		<div class="rating-wrap">
-			<h2>Star Rating</h2>
-			<div class="center">
-				<fieldset class="rating">
-					<input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="Awesome"></label>
-					<input type="radio" id="star4.5" name="rating" value="4.5"/><label for="star4.5" class="half"></label>
-					<input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
-					<input type="radio" id="star3.5" name="rating" value="3.5"/><label for="star3.5" class="half"></label>
-					<input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full"></label>
-					<input type="radio" id="star2.5" name="rating" value="2.5"/><label for="star2.5" class="half"></label>
-					<input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
-					<input type="radio" id="star1.5" name="rating" value="1.5"/><label for="star1.5" class="half"></label>
-					<input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
-					<input type="radio" id="star0.5" name="rating" value="0.5"/><label for="star0.5" class="half"></label>
-				</fieldset>
-			</div>
-
-			<h4 id="rating-value"></h4>
-		</div>
-	</div>
 
 
 	<script src="./js/star-ratings.js"></script>

@@ -41,7 +41,7 @@ include('./includes/sidenav.php');
                         $query = "SELECT
                                 job_application.application_id, 
                                 job_application.date_applied, 
-                                job_application.job_id, 
+                                job_application.job_id,     
                                 job_application.`status`, 
                                 user_accounts.firstname, 
                                 user_accounts.lastname, 
@@ -80,6 +80,7 @@ include('./includes/sidenav.php');
                                         <form action="process.php" method="POST">
                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
                                                 <!-- Accept button form -->
+                                                <input type="hidden" name="job_id" value="<?= $row['job_id']; ?>">
                                                 <input type="hidden" name="id" value="<?= $row['application_id']; ?>">
                                                 <button type="submit" name="accept" class="btn btn-outline-primary">Accept</button>
                                             </div>

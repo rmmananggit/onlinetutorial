@@ -21,28 +21,7 @@
     <div class="candidate-list-widgets mb-4">
         <form action="#" class="">
             <div class="g-2 row">
-                <div class="col-lg-4">
-                    <div class="filler-job-form">
-                        <i class="uil uil-location-point"></i>
-                        <select class="form-select selectForm__inner" data-trigger="true" name="category" id="category" aria-label="Default select example" required>
-                            <option selected disabled>Select Category</option>
-                            <option value="Academic">Academic</option>
-                            <option value="Non Academic">Non Academic</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Second dropdown for Academic and Non Academic subjects -->
-                <div class="col-lg-4" id="subjectDropdown" style="display: none;">
-                    <div class="filler-job-form">
-                        <i class="uil uil-location-point"></i>
-                        <select class="form-select selectForm__inner" name="subjects" id="subjects" aria-label="Default select example" required>
-                            <option selected disabled>Select Subject</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <div class="filler-job-form">
                         <i class="uil uil-location-point"></i>
                         <select class="form-select selectForm__inner" data-trigger="true" name="municipality" id="municipality" aria-label="Default select example" required>
@@ -163,7 +142,7 @@
                                             <a class="primary-link"><?php echo $row['title'] ?></a>
                                         </h5>
                                         <ul class="list-inline mb-0 text-muted">
-                                            <li class="list-inline-item"><?php echo $row['address'] ?></li>
+                                            <li class="list-inline-item"><?php echo $row['municipality'] ?></li>
                                             <br>
                                             <li class="list-inline-item">
                                                 <span class="badge <?php echo ($row['status'] === 'Active') ? 'bg-success' : (($row['status'] === 'Ongoing') ? 'bg-warning' : 'bg-secondary'); ?>">

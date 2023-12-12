@@ -40,7 +40,11 @@ include('./includes/sidenav.php');
                         user_accounts.`password`, 
                         user_accounts.phone_number, 
                         user_accounts.role, 
-                        tutee.profile_picture
+                        tutee.profile_picture,
+                        tutee.aboutme,
+                        tutee.municipality,
+                        tutee.barangay,
+                        tutee.address
                       FROM
                         user_accounts
                         INNER JOIN
@@ -107,6 +111,7 @@ include('./includes/sidenav.php');
                     <div class="row">
                       <div class="col">
                         <div class="row">
+                        <div class="mb-2 ml-1"><b>Personal Information</b></div>
                           <div class="col">
                             <div class="form-group">
                               <label>First Name</label>
@@ -130,13 +135,39 @@ include('./includes/sidenav.php');
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <label>Email</label>
+                              <label>Email Address</label>
                               <input class="form-control" type="text" name="email" placeholder="user@example.com" value="<?= $user['email']; ?>">
                             </div>
                           </div>
-
-                          <hr>
+                          <div class="form-group">
+                        <textarea class="form-control" name="aboutme" rows="7" maxlength="200" placeholder="Max character is 200."><?= $user['aboutme']; ?></textarea>
+                    </div>
                         </div>
+
+                        <hr>
+                        <div class="row">
+                        <div class="mb-2 ml-1"><b>Address</b></div>
+                        <div class="col-12 mb-3">
+                          <label>Full Address</label>
+                              <input class="form-control" type="text" name="address" value="<?= $user['address']; ?>">
+                        </div>
+
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Barangay</label>
+                              <input class="form-control" type="text" name="brgy" value="<?= $user['barangay']; ?>">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Municipality</label>
+                              <input class="form-control" type="text" name="municipality" value="<?= $user['municipality']; ?>">
+                            </div>
+                          </div>
+      
+                        </div>
+
+                       <hr>
                       </div>
                     </div>
                     <div class="row">

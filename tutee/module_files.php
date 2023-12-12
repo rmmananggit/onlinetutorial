@@ -154,7 +154,7 @@ function getFileIcon($extension) {
             $('#fileContent').html(`<object data="${filePath}" type="application/pdf" width="100%" height="600px"></object>`);
         } else if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
             // Image file
-            $('#fileContent').html(`<img src="${filePath}" class="img-fluid" alt="Image" />`);
+            $('#fileContent').html(`<img src="${filePath}" class="img-fluid" style="object-fit: cover; max-height: 600px;" alt="Image" />`);
         } else if (fileExtension === 'mp4' || fileExtension === 'avi') {
             // Video file (you can customize this based on your video types)
             $('#fileContent').html(`<video controls width="100%" height="400px"><source src="${filePath}" type="video/${fileExtension}"></video>`);
@@ -167,6 +167,7 @@ function getFileIcon($extension) {
         $('#viewFileModal').modal('show');
     }
 </script>
+
 
 
 <?php

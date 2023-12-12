@@ -44,8 +44,8 @@ include('./includes/sidenav.php');
                                     job.description, 
                                     job.rate, 
                                     job.rate_description, 
+                                    job.user_id,
                                     job_application.`status`, 
-                                    job_application.user_id, 
                                     job_application.job_id
                                 FROM
                                     job
@@ -71,7 +71,7 @@ include('./includes/sidenav.php');
                                     <td class="text-center">
 
 <div class="btn-group" role="group" aria-label="Basic outlined example">
-<a type="button" class="btn btn-outline-primary" href="view_details.php?id=<?=$row['job_id'];?>">View Details</a>
+<a type="button" class="btn btn-outline-primary" href="view_details.php?id=<?=$row['user_id'];?>">View Details</a>
 </div></td>                         
                                 
                                 </tr>
