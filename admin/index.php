@@ -24,6 +24,7 @@
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>Role</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -31,40 +32,44 @@
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>Role</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php
                         $user_id = $_SESSION['auth_user']['user_id'];
                         $query = "SELECT
-                                    job.title, 
-                                    job.description, 
-                                    job.rate, 
-                                    job.rate_description, 
-                                    job.user_id,
-                                    job_application.`status`, 
-                                    job_application.job_id
-                                FROM
-                                    job
-                                INNER JOIN
-                                    job_application
-                                ON 
-                                    job.job_id = job_application.job_id
-                                WHERE
-                                    job_application.user_id = $user_id AND
-                                    job_application.`status` = 'Ongoing'";
+                        user_accounts.firstname, 
+                        user_accounts.lastname, 
+                        user_accounts.phone_number, 
+                        user_accounts.role, 
+                        user_accounts.user_id
+                    FROM
+                        user_accounts
+                    WHERE
+                        user_accounts.user_id != '$user_id' ";
                         $query_run = mysqli_query($con, $query);
                         if (mysqli_num_rows($query_run) > 0) {
                             foreach ($query_run as $row) {
                         ?>
                                 <tr>
 
-                                    <td><b><?= $row['title']; ?></b></td>
-                                    <td><?= $row['description']; ?></td>
-                                    <td><?= $row['rate']; ?>/<?= $row['rate_description']; ?></td>
-                                    <td style="color: <?= $row['status'] === 'Accepted' ? 'green' : ($row['status'] === 'Rejected' ? 'red' : ($row['status'] === 'Ongoing' ? 'orange' : 'black')) ?>; font-weight: bold;">
-                                    <?= $row['status'] ?>
-                                    </td>
+                                    <td><?= $row['firstname']; ?> <?= $row['lastname']; ?></td>
+                                    <td><?= $row['phone_number']; ?></td>
+                                    <td>
+                                    <?php
+                                    // Assuming $row['role'] contains the role information (1 or 2)
+                                    if ($row['role'] == 1) {
+                                        echo 'Tutee';
+                                    } elseif ($row['role'] == 2) {
+                                        echo 'Tutor';
+                                    } else {
+                                        // Handle other cases if needed
+                                        echo 'Unknown Role';
+                                    }
+                                    ?>
+</td>
+                                   
                                     <td class="text-center">
 
 <div class="btn-group" role="group" aria-label="Basic outlined example">
