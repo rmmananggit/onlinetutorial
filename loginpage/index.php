@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="col-sm-12 text-right">
-            <p>Not yet registered? <a href="../registrationpage/index.php" class="ml-1">Register Here</a></p>
+            <p>Not yet registered? <a href="../registration/index.php" class="ml-1">Register Here</a></p>
           </div>
           <div class="col-12">
             <button class="btn btn-primary" type="submit" name="login">Login</button>
