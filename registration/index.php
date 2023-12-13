@@ -96,7 +96,7 @@
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="../login/index.php">Have an account? Go to login</a></div>
+                                    <div class="small"><a href="../loginpage/index.php">Have an account? Go to login</a></div>
                                 </div>
                             </div>
                         </div>

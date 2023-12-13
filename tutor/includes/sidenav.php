@@ -23,11 +23,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>Tutor Applicants
                             </a>
 
-                            <a class="nav-link" href="message.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>Message
-                            </a>
-
-
                             <a class="nav-link" href="learning_resources.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>Learning Resources
                             </a>

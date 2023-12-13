@@ -379,14 +379,14 @@
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
       <h6 class="mt-3 mb-2 text-primary">Non-Academic Skills</h6>
       <div class="form-group">
-        <input type="checkbox" id="guitar" name="skills[]" value="Guitar Lesson">
-        <label for="guitar">Guitar Lesson</label><br>
+        <input type="checkbox" id="guitar" name="skills[]" value="Music">
+        <label for="guitar">Music</label><br>
         
-        <input type="checkbox" id="public_speaking" name="skills[]" value="Public Speaking Masterclass">
-        <label for="public_speaking">Public Speaking Masterclass</label><br>
+        <input type="checkbox" id="public_speaking" name="skills[]" value="Arts">
+        <label for="public_speaking">Arts</label><br>
         
-        <input type="checkbox" id="bookkeeping" name="skills[]" value="Bookkeeping NC III">
-        <label for="bookkeeping">Bookkeeping NC III</label>
+        <input type="checkbox" id="bookkeeping" name="skills[]" value="Culinary Arts">
+        <label for="Culinary Arts">Culinary Arts</label>
       </div>
     </div>
   </div>

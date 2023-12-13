@@ -17,7 +17,7 @@ if (isset($_SESSION['auth_user']['user_id'])) {
     if ($profileResult->num_rows > 0) {
         $_SESSION['status'] = "Welcome $username";
         $_SESSION['status_code'] = "success";
-        header("Location: index.php");
+        header("Location: my_profile.php");
     } else {
         $_SESSION['status'] = "Fill-up profile information to proceed to dashboard";
         $_SESSION['status_code'] = "warning";

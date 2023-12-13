@@ -9,17 +9,11 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Manage</div>
 
-                            <a class="nav-link" href="my_job.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-group"></i></div>User Subscription
-                            </a>
-
-                          
-                            <div class="sb-sidenav-menu-heading">View</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="subscription_tutor.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-person-chalkboard"></i></div>Tutor
                             </a>
                 
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="subscription_tutee.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-pen"></i></div>Tutee
                             </a>
                           
