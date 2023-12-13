@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Registration successful, redirect to login page
         $_SESSION['status'] = "Registration Complete!";
         $_SESSION['status_code'] = "success";
-        header('Location: ../login/index.php');
+        header('Location: ../loginpage/index.php');
         exit();
     } else {
         $_SESSION['status'] = "Invalid OTP. Please try again.";
