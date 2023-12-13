@@ -1,4 +1,6 @@
 <?php
+ include('./includes/authentication.php');
+ include('./includes/header.php');
  include('./includes/header.php');
  include('./includes/topnav.php');
  include('./includes/sidenav.php');
@@ -7,32 +9,28 @@
 <div class="container-fluid px-4 mt-4">
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Ongoing Tutor</li>
+        <li class="breadcrumb-item active">Dashboard</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-           Ongoing Tutor Services
+           All Accounts
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="datatablesSimple" class="table table-bordered" width="100%">
                     <thead>
                         <tr>
-                            <th>Job Title</th>
-                            <th>Description</th>
-                            <th>Rate</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Role</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Job Title</th>
-                            <th>Description</th>
-                            <th>Rate</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Role</th>
                         </tr>
                     </tfoot>
                     <tbody>
