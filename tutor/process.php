@@ -67,10 +67,6 @@ if (isset($_POST['create_tutoring_services'])) {
 }
 
 
-
-
-
-
 if (isset($_POST['submit'])) {
     $user_id = $_SESSION['auth_user']['user_id'];
     $gender = $_POST['gender'];
@@ -165,9 +161,6 @@ if(isset($_POST['submit_payment']))
         exit(0);
     }
 }
-
-
-
 
 if (isset($_POST['update_account'])) {
     $user_id = $_POST['user_id'];
