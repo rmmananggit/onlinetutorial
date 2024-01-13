@@ -70,47 +70,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // If both email and phone number are unique, proceed with insertion
     $otp = generateOTP();
 
-    $stmt = $con->prepare("INSERT INTO `user_accounts` (`firstname`, `lastname`, `email`, `password`, `phone_number`, `is_verified`, `role`, `otp`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $con->prepare("INSERT INTO `user_accounts` (`firstname`, `lastname`, `email`, `password`, `phone_number`, `is_verified`, `role`, `otp`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $firstname = htmlentities($_POST['firstname']);
-    $lastname = htmlentities($_POST['lastname']);
-    $email = htmlentities($_POST['email']);
-    $otp = htmlentities($otp);
+    //     $firstname = htmlentities($_POST['firstname']);
+    //     $lastname = htmlentities($_POST['lastname']);
+    //     $email = htmlentities($_POST['email']);
+    //     $otp = htmlentities($otp);
 
-    $subject = 'Your One-Time Password (OTP) for Account Verification';
-    $message = "
-    Dear $firstname $lastname,<br>
-    Thank you for registering with our platform. To verify your account, please use the following One-Time Password (OTP):<br>
-    $otp<br>
-    This OTP is valid for a single use and will expire in 5 minutes. Please enter this code on the verification page to complete the registration process.<br>
-    If you did not attempt to register, please ignore this email.<br>
-    ";
+    //     $subject = 'Your One-Time Password (OTP) for Account Verification';
+    //     $message = "
+    //     Dear $firstname $lastname,<br>
+    //     Thank you for registering with our platform. To verify your account, please use the following One-Time Password (OTP):<br>
+    //     $otp<br>
+    //     This OTP is valid for a single use and will expire in 5 minutes. Please enter this code on the verification page to complete the registration process.<br>
+    //     If you did not attempt to register, please ignore this email.<br>
+    //     ";
 
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'teachmesenseitutorngsystem@gmail.com';
-    $mail->Password= 'oxlhbwvzqhqcgwok';
-    $mail->Port = 465;
-    $mail->SMTPSecure = 'ssl';
-    $mail->isHTML(true);
-    $mail->setFrom($email, $firstname);
-    $mail->addAddress("$email");
-    $mail->Subject = ("$subject");
-    $mail->Body = $message;
-    $mail->send();
+    //     $mail = new PHPMailer(true);
+    //     $mail->isSMTP();
+    //     $mail->Host = 'smtp.gmail.com';
+    //     $mail->SMTPAuth = true;
+    //     $mail->Username = 'teachmesenseitutorngsystem@gmail.com';
+    //     $mail->Password= 'oxlhbwvzqhqcgwok';
+    //     $mail->Port = 465;
+    //     $mail->SMTPSecure = 'ssl';
+    //     $mail->isHTML(true);
+    //     $mail->setFrom($email, $firstname);
+    //     $mail->addAddress("$email");
+    //     $mail->Subject = ("$subject");
+    //     $mail->Body = $message;
+    //     $mail->send();
 
-if (!$stmt) {
-    die('Error during prepare: ' . $con->error);
-}
+    // if (!$stmt) {
+    //     die('Error during prepare: ' . $con->error);
+    // }
 
-// Corrected binding parameters
-$stmt->bind_param("ssssssss", $firstname, $lastname, $email, $password, $phonenumber, $is_verified, $user_type, $otp);
+    // Corrected binding parameters
+    $stmt->bind_param("ssssssss", $firstname, $lastname, $email, $password, $phonenumber, $is_verified, $user_type, $otp);
 
-if (!$stmt->execute()) {
-    die('Error during execute: ' . $stmt->error);
-}
+    if (!$stmt->execute()) {
+        die('Error during execute: ' . $stmt->error);
+    }
 
     // Store user data in session for verification
     $_SESSION['user_data'] = [

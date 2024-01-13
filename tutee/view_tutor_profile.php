@@ -277,7 +277,7 @@ background:#f7f8fa
                     ?>
 
                             <h4 class="text-primary font-size-20 mt-3 mb-2"><?= $user['firstname']; ?> </h4>
-                            <a class="btn btn-outline-primary">Message</a>
+                            <a class="btn btn-outline-primary mb-3  ">Message</a>
                         </div>
                     </div><!-- end col -->
                     <div class="col-md-9">

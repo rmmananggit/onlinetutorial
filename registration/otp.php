@@ -46,7 +46,7 @@
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="registration_tutor.php">Go back to registration</a></div>
+                                    <div class="small"><a href="index.php">Go back to registration</a></div>
                                 </div>
                             </div>
                         </div>

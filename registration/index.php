@@ -10,6 +10,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
     </head>
 
     <?php session_start(); ?>
@@ -34,13 +35,28 @@
                                                     <label for="inputFirstName">First name</label>
                                                 </div>
                                             </div>
+                                            
                                             <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <select class="form-select" id="suffix" name="suffix" required>
+                                                    <option disabled selected value="">Select Suffix</option>
+                                                    <option value="I">I</option>
+                                                    <option value="II">II</option>
+                                                    <option value="III">III</option>
+                                                </select>
+                                                <label for="registerAs">Suffix:</label>
+                                            </div>
+                                            </div>
+
+                                            <div class="col-md-12">
                                                 <div class="form-floating">
                                                     <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="lastname" />
                                                     <label for="inputLastName">Last name</label>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        
 
                                         <!-- Email input -->
                                         <div class="form-floating mb-3">
@@ -50,18 +66,20 @@
 
                                         <!-- Password input -->
                                         <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" name="password" />
-                                                    <label for="inputPassword">Password</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="c_password" />
-                                                    <label for="inputPasswordConfirm">Confirm Password</label>
-                                                </div>
-                                            </div>
+                                       
+                                        <div class="col-md-6">
+            <div class="form-floating mb-3 mb-md-0">
+                <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" name="password" />
+                <label for="inputPassword">Password</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3 mb-md-0">
+                <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="c_password" />
+                <label for="inputPasswordConfirm">Confirm Password</label>
+                <p id="passwordMatchError" style="color: red; display: none;">Passwords do not match.</p>
+            </div>
+        </div>
 
                                             <div class="col-md-6 mt-3">
                                             <div class="form-group">
@@ -72,7 +90,7 @@
                                             </div>
 
                                             
-                                            <div class="col-md-6 mt-3">
+                                            <div class="col-md-6 mt-4">
                                             <div class="form-floating mb-3">
                                                 <select class="form-select" id="registerAs" name="role" required>
                                                     <option disabled selected value="">Select</option>
@@ -82,14 +100,31 @@
                                                 <label for="registerAs">Register As:</label>
                                             </div>
                                             </div>
-                                        </div>
+
+                                            <div class="col-md-6 mt-4">
+                                            <div class="form-check mt-3">
+                                            <input class="form-check-input" type="checkbox" id="termsCheckbox">
+                                            <label class="form-check-label" for="termsCheckbox">
+                                            I agree to the <a href="#" target="_blank">Terms and Conditions</a>
+                                            </label>
+                                            </div>
+                                            </div>
+
+                                            <div class="col-md-6 mt-4">
+                                            <div class="g-recaptcha" data-sitekey="6LehgUYpAAAAAGcCEb3JrgAuGgwvczS8sep-C5_s"></div> 
+                                            </div>
+
+                                            </div>
+
+                                            
+                                        
 
 
 
                                         <!-- Create Account button -->
                                         <div class="mt-4 mb-0">
                                             <div class="d-grid">
-                                                <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+                                            <button type="submit" class="btn btn-primary mt-3" id="submitButton" disabled>Submit</button>
                                             </div>
                                         </div>
 
@@ -125,6 +160,62 @@
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        function validatePassword() {
+            var password = $("#inputPassword").val();
+            var confirmPassword = $("#inputPasswordConfirm").val();
+
+            if (password !== confirmPassword) {
+                $("#passwordMatchError").show();
+            } else {
+                $("#passwordMatchError").hide();
+            }
+        }
+
+        function checkPasswordMatch() {
+            validatePassword();
+
+            // Use AJAX to send the password and confirm password to the server for validation
+            $.ajax({
+                type: "POST",
+                url: "check_password.php", // Replace with the actual path to your server-side script
+                data: {
+                    password: $("#inputPassword").val(),
+                    confirmPassword: $("#inputPasswordConfirm").val()
+                },
+                success: function (response) {
+                    if (response === "false") {
+                        $("#passwordMatchError").show();
+                    } else {
+                        $("#passwordMatchError").hide();
+                    }
+                    enableSubmitButton();
+                }
+            });
+        }
+
+        function enableSubmitButton() {
+            // Enable the submit button only if the terms and conditions checkbox is checked
+            if ($("#termsCheckbox").prop("checked")) {
+                $("#submitButton").prop("disabled", false);
+            } else {
+                $("#submitButton").prop("disabled", true);
+            }
+        }
+
+        // Attach the input event handler to both password fields
+        $("#inputPassword, #inputPasswordConfirm").on("input", checkPasswordMatch);
+
+        // Attach the change event handler to the terms and conditions checkbox
+        $("#termsCheckbox").change(enableSubmitButton);
+
+        // Initial validation on document load
+        validatePassword();
+    });
+</script>
 
     <script>
     // Add event listener to the input field
@@ -144,6 +235,7 @@
         event.target.value = phoneNumber;
     });
 </script>
+
 
     
 
