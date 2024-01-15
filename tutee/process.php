@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     $query_run = mysqli_query($con, $query);
 
     if ($query_run) {
-        $_SESSION['status'] = "Welcome $username";
+        $_SESSION['status'] = "Welcome!";
         $_SESSION['status_code'] = "success";
         header("Location: index.php");
         exit(0);

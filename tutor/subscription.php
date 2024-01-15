@@ -4,10 +4,6 @@
  include('./includes/topnav.php');
  ?>
 <style>
-    body{
-
-    background-color: #eee;
-}
 
 .container{
 
@@ -22,7 +18,7 @@
 }
 
 .form-control {
-    border-bottom: 2px solid #eee !important;
+    border-bottom: 2px solid #d2c6cc !important;
     border: none;
     font-weight: 600
 }

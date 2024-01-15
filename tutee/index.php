@@ -125,7 +125,7 @@
                                 <div class="col-auto">
                                     <div class="candidate-list-images">
 
-                                    <!-- <a href="view_tutor_profile.php?id=<?= $row['tutor_id']; ?>"> -->
+                                    <a href="view_tutor_profile.php?id=<?= $row['tutor_id']; ?>">
                                     <?php 
                                         echo '<img class="avatar-md rounded-circle" 
                                             data-image="'.base64_encode($row['profile_picture']).'" 
